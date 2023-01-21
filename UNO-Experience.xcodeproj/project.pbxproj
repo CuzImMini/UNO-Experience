@@ -1,0 +1,561 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ECA880292979428A00DE4AC8 /* UNO_ClientApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA880282979428A00DE4AC8 /* UNO_ClientApp.swift */; };
+		ECA880302979428B00DE4AC8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECA8802F2979428B00DE4AC8 /* Preview Assets.xcassets */; };
+		ECA8803B297942B800DE4AC8 /* UNO_HostApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8803A297942B800DE4AC8 /* UNO_HostApp.swift */; };
+		ECA8803D297942B800DE4AC8 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8803C297942B800DE4AC8 /* MainMenu.swift */; };
+		ECA88042297942B900DE4AC8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECA88041297942B900DE4AC8 /* Preview Assets.xcassets */; };
+		ECA8805A2979435000DE4AC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECA880592979435000DE4AC8 /* Assets.xcassets */; };
+		ECA8805B2979435000DE4AC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECA880592979435000DE4AC8 /* Assets.xcassets */; };
+		ECA88069297951BD00DE4AC8 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA88068297951BD00DE4AC8 /* MainMenu.swift */; };
+		ECA88073297973D700DE4AC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA88072297973D700DE4AC8 /* AppDelegate.swift */; };
+		ECA88074297973D700DE4AC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA88072297973D700DE4AC8 /* AppDelegate.swift */; };
+		ECC39734297C4AA70033FBD4 /* GameStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC39733297C4AA70033FBD4 /* GameStates.swift */; };
+		ECC39735297C4AA70033FBD4 /* GameStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC39733297C4AA70033FBD4 /* GameStates.swift */; };
+		ECC39737297C4B390033FBD4 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC39736297C4B390033FBD4 /* GameEngine.swift */; };
+		ECC39738297C4B390033FBD4 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC39736297C4B390033FBD4 /* GameEngine.swift */; };
+		ECC3973C297C51A70033FBD4 /* ConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC3973B297C51A70033FBD4 /* ConnectionView.swift */; };
+		ECC3973E297C51D60033FBD4 /* DeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC3973D297C51D60033FBD4 /* DeckView.swift */; };
+		ECC39743297C6E880033FBD4 /* ConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC39742297C6E880033FBD4 /* ConnectionView.swift */; };
+		ECC39745297C6EDC0033FBD4 /* DeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC39744297C6EDC0033FBD4 /* DeckView.swift */; };
+		ECC39747297C70CF0033FBD4 /* HostSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC39746297C70CF0033FBD4 /* HostSessionManager.swift */; };
+		ECC39749297C71080033FBD4 /* ClientSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC39748297C71080033FBD4 /* ClientSessionManager.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		ECA880262979428A00DE4AC8 /* UNO-Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UNO-Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECA880282979428A00DE4AC8 /* UNO_ClientApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNO_ClientApp.swift; sourceTree = "<group>"; };
+		ECA8802F2979428B00DE4AC8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		ECA88038297942B800DE4AC8 /* UNO-Host.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UNO-Host.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECA8803A297942B800DE4AC8 /* UNO_HostApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNO_HostApp.swift; sourceTree = "<group>"; };
+		ECA8803C297942B800DE4AC8 /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
+		ECA88041297942B900DE4AC8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		ECA880592979435000DE4AC8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ECA88068297951BD00DE4AC8 /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
+		ECA88072297973D700DE4AC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		ECC39732297C47670033FBD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		ECC39733297C4AA70033FBD4 /* GameStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStates.swift; sourceTree = "<group>"; };
+		ECC39736297C4B390033FBD4 /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
+		ECC3973B297C51A70033FBD4 /* ConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionView.swift; sourceTree = "<group>"; };
+		ECC3973D297C51D60033FBD4 /* DeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckView.swift; sourceTree = "<group>"; };
+		ECC39742297C6E880033FBD4 /* ConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionView.swift; sourceTree = "<group>"; };
+		ECC39744297C6EDC0033FBD4 /* DeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckView.swift; sourceTree = "<group>"; };
+		ECC39746297C70CF0033FBD4 /* HostSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostSessionManager.swift; sourceTree = "<group>"; };
+		ECC39748297C71080033FBD4 /* ClientSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSessionManager.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ECA880232979428A00DE4AC8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECA88035297942B800DE4AC8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ECA88006297941E700DE4AC8 = {
+			isa = PBXGroup;
+			children = (
+				ECA880582979433E00DE4AC8 /* Shared */,
+				ECA880272979428A00DE4AC8 /* UNO-Client */,
+				ECA88039297942B800DE4AC8 /* UNO-Host */,
+				ECA88010297941E700DE4AC8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ECA88010297941E700DE4AC8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ECA880262979428A00DE4AC8 /* UNO-Client.app */,
+				ECA88038297942B800DE4AC8 /* UNO-Host.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ECA880272979428A00DE4AC8 /* UNO-Client */ = {
+			isa = PBXGroup;
+			children = (
+				ECA880282979428A00DE4AC8 /* UNO_ClientApp.swift */,
+				ECA8802E2979428B00DE4AC8 /* Preview Content */,
+				ECA88068297951BD00DE4AC8 /* MainMenu.swift */,
+				ECC3973B297C51A70033FBD4 /* ConnectionView.swift */,
+				ECC3973D297C51D60033FBD4 /* DeckView.swift */,
+				ECC39748297C71080033FBD4 /* ClientSessionManager.swift */,
+			);
+			path = "UNO-Client";
+			sourceTree = "<group>";
+		};
+		ECA8802E2979428B00DE4AC8 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				ECA8802F2979428B00DE4AC8 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		ECA88039297942B800DE4AC8 /* UNO-Host */ = {
+			isa = PBXGroup;
+			children = (
+				ECC39732297C47670033FBD4 /* Info.plist */,
+				ECA8803A297942B800DE4AC8 /* UNO_HostApp.swift */,
+				ECA8803C297942B800DE4AC8 /* MainMenu.swift */,
+				ECA88040297942B900DE4AC8 /* Preview Content */,
+				ECC39742297C6E880033FBD4 /* ConnectionView.swift */,
+				ECC39744297C6EDC0033FBD4 /* DeckView.swift */,
+				ECC39746297C70CF0033FBD4 /* HostSessionManager.swift */,
+			);
+			path = "UNO-Host";
+			sourceTree = "<group>";
+		};
+		ECA88040297942B900DE4AC8 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				ECA88041297942B900DE4AC8 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		ECA880582979433E00DE4AC8 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				ECA880592979435000DE4AC8 /* Assets.xcassets */,
+				ECC39733297C4AA70033FBD4 /* GameStates.swift */,
+				ECA88072297973D700DE4AC8 /* AppDelegate.swift */,
+				ECC39736297C4B390033FBD4 /* GameEngine.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ECA880252979428A00DE4AC8 /* UNO-Client */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ECA880312979428B00DE4AC8 /* Build configuration list for PBXNativeTarget "UNO-Client" */;
+			buildPhases = (
+				ECA880222979428A00DE4AC8 /* Sources */,
+				ECA880232979428A00DE4AC8 /* Frameworks */,
+				ECA880242979428A00DE4AC8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "UNO-Client";
+			productName = "UNO-Client";
+			productReference = ECA880262979428A00DE4AC8 /* UNO-Client.app */;
+			productType = "com.apple.product-type.application";
+		};
+		ECA88037297942B800DE4AC8 /* UNO-Host */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ECA88043297942B900DE4AC8 /* Build configuration list for PBXNativeTarget "UNO-Host" */;
+			buildPhases = (
+				ECA88034297942B800DE4AC8 /* Sources */,
+				ECA88035297942B800DE4AC8 /* Frameworks */,
+				ECA88036297942B800DE4AC8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "UNO-Host";
+			productName = "UNO-Host";
+			productReference = ECA88038297942B800DE4AC8 /* UNO-Host.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ECA88007297941E700DE4AC8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					ECA880252979428A00DE4AC8 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					ECA88037297942B800DE4AC8 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+				};
+			};
+			buildConfigurationList = ECA8800A297941E700DE4AC8 /* Build configuration list for PBXProject "UNO-Experience" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ECA88006297941E700DE4AC8;
+			productRefGroup = ECA88010297941E700DE4AC8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ECA880252979428A00DE4AC8 /* UNO-Client */,
+				ECA88037297942B800DE4AC8 /* UNO-Host */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ECA880242979428A00DE4AC8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECA880302979428B00DE4AC8 /* Preview Assets.xcassets in Resources */,
+				ECA8805A2979435000DE4AC8 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECA88036297942B800DE4AC8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECA88042297942B900DE4AC8 /* Preview Assets.xcassets in Resources */,
+				ECA8805B2979435000DE4AC8 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ECA880222979428A00DE4AC8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECA88069297951BD00DE4AC8 /* MainMenu.swift in Sources */,
+				ECC39737297C4B390033FBD4 /* GameEngine.swift in Sources */,
+				ECA88073297973D700DE4AC8 /* AppDelegate.swift in Sources */,
+				ECC3973E297C51D60033FBD4 /* DeckView.swift in Sources */,
+				ECC3973C297C51A70033FBD4 /* ConnectionView.swift in Sources */,
+				ECC39749297C71080033FBD4 /* ClientSessionManager.swift in Sources */,
+				ECC39734297C4AA70033FBD4 /* GameStates.swift in Sources */,
+				ECA880292979428A00DE4AC8 /* UNO_ClientApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECA88034297942B800DE4AC8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECA88074297973D700DE4AC8 /* AppDelegate.swift in Sources */,
+				ECC39738297C4B390033FBD4 /* GameEngine.swift in Sources */,
+				ECA8803D297942B800DE4AC8 /* MainMenu.swift in Sources */,
+				ECC39747297C70CF0033FBD4 /* HostSessionManager.swift in Sources */,
+				ECC39745297C6EDC0033FBD4 /* DeckView.swift in Sources */,
+				ECC39743297C6E880033FBD4 /* ConnectionView.swift in Sources */,
+				ECC39735297C4AA70033FBD4 /* GameStates.swift in Sources */,
+				ECA8803B297942B800DE4AC8 /* UNO_HostApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		ECA8801B297941E700DE4AC8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		ECA8801C297941E700DE4AC8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		ECA880322979428B00DE4AC8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"UNO-Client/Preview Content\"";
+				DEVELOPMENT_TEAM = X2TH88GCYU;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "UNO-Client/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = Bitte;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Akzeptieren bitte";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.paulcornelissen.UNO-Client";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		ECA880332979428B00DE4AC8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"UNO-Client/Preview Content\"";
+				DEVELOPMENT_TEAM = X2TH88GCYU;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "UNO-Client/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = Bitte;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Akzeptieren bitte";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.paulcornelissen.UNO-Client";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		ECA88044297942B900DE4AC8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"UNO-Host/Preview Content\"";
+				DEVELOPMENT_TEAM = X2TH88GCYU;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "UNO-Host/Info.plist";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Lokales Netzwerk wäre Babamäßig";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.paulcornelissen.UNO-Host";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		ECA88045297942B900DE4AC8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"UNO-Host/Preview Content\"";
+				DEVELOPMENT_TEAM = X2TH88GCYU;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "UNO-Host/Info.plist";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Lokales Netzwerk wäre Babamäßig";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.paulcornelissen.UNO-Host";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ECA8800A297941E700DE4AC8 /* Build configuration list for PBXProject "UNO-Experience" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECA8801B297941E700DE4AC8 /* Debug */,
+				ECA8801C297941E700DE4AC8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ECA880312979428B00DE4AC8 /* Build configuration list for PBXNativeTarget "UNO-Client" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECA880322979428B00DE4AC8 /* Debug */,
+				ECA880332979428B00DE4AC8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ECA88043297942B900DE4AC8 /* Build configuration list for PBXNativeTarget "UNO-Host" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECA88044297942B900DE4AC8 /* Debug */,
+				ECA88045297942B900DE4AC8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ECA88007297941E700DE4AC8 /* Project object */;
+}
