@@ -21,7 +21,7 @@ struct MainMenu: View {
                 ConnectionView().environmentObject(self.engine)
         
          case .inGame:
-            DeckView()
+            DeckView().environmentObject(self.engine)
             
         }
         

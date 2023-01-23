@@ -30,6 +30,7 @@ class MP_Session: NSObject, ObservableObject {
         //aktuelle Ansicht auf den Geräten...
         //To-DO PLanung Ansichten (wahrscheinlich 1. Hauptmenü, 2. Spielmenü, 2.1 Unokarten mit ListView
     @Published var viewState: ViewStates = .mainMenu
+    @Published var activeCard: Cards = .RED_ZERO
     
     //Variable um auf GameEngine zuzugreifen
     @Published var gameHandler: GameEngine!

@@ -8,8 +8,20 @@
 import SwiftUI
 
 struct DeckView: View {
+    
+    @EnvironmentObject var engine: MP_Session
+
     var body: some View {
-        Text("Hier kommen UNO Karten!")
+        VStack() {
+            Text("Hier kommen UNO Karten!")
+            Button("Rot 0") {
+                engine.sendTraffic(data: Cards.RED_ZERO.rawValue.data(using: .isoLatin1)!)
+            }
+            Button("Rot-1") {
+                engine.sendTraffic(data: Cards.RED_ONE.rawValue.data(using: .isoLatin1)!)
+
+            }
+        }
     }
 }
 

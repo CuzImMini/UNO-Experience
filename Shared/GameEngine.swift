@@ -62,6 +62,23 @@ class GameEngine: ObservableObject {
     //Verarbeitung der Spielzüge
     func gameActionHandler(data: Data) {
         
+        switch String(data: data, encoding: .isoLatin1) {
+            
+        case Cards.RED_ONE.rawValue:
+            DispatchQueue.main.async {
+                self.sessionHandler.activeCard = .RED_ONE
+            }
+            
+        case Cards.RED_ZERO.rawValue:
+            DispatchQueue.main.async {
+                self.sessionHandler.activeCard = .RED_ZERO
+            }
+        case .none:
+            log.error("Nope")
+        case .some(_):
+            log.error("Nope")
+
+        }
     }
     
     //Wechseln des Gamestatus
