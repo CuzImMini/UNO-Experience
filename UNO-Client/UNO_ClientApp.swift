@@ -12,7 +12,7 @@ struct UNO_ClientApp: App {
     var body: some Scene {
         WindowGroup {
             MainMenu()
-            
+
         }
     }
 }

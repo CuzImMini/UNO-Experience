@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct ConnectionView: View {
-    
+
     @EnvironmentObject var engine: MP_Session
 
-    
+
     var body: some View {
         VStack {
             Text("Willkommen zu UNO-Experience!")
@@ -20,16 +20,16 @@ struct ConnectionView: View {
             Text("Verbundene Geräte \(self.engine.connectedPeers.count)")
             Text(String(describing: self.engine.connectedPeers.map(\.displayName)))
             Spacer().frame(maxHeight: 100)
-            
+
             if self.engine.isReady {
                 Button("Start") {
-                    self.engine.gameHandler.changeViewState(viewState: .inGame)
-                    
+                    self.engine.gameHandler.startGameEverywhere()
                 }
-                .buttonStyle(.bordered)
-            } 
+                        .buttonStyle(.bordered)
+            }
 
-        }    }
+        }
+    }
 }
 
 struct ConnectionView_Previews: PreviewProvider {

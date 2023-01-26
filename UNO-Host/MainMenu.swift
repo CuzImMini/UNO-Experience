@@ -15,21 +15,28 @@ struct MainMenu: View {
     var body: some View {
 
         switch self.engine.viewState {
-  
+
         case .mainMenu:
             ConnectionView()
-                .environmentObject(self.engine)
-         case .inGame:
+                    .environmentObject(self.engine)
+        case .inGame:
             DeckView()
-                .environmentObject(self.engine)
+                    .environmentObject(self.engine)
+        case .loose:
+            VStack {
+            Text("Das Spiel ist zuende!")
+            Text("Platzhalter für Neustartknopf")
+            }
+        case .win:
+            VStack {
+            Text("Das Spiel ist zuende!")
+            Text("Platzhalter für Neustartknopf")
+            }
         }
-        
-        
+
+
     }
 }
-
-
-
 
 
 struct MainMenu_Previews: PreviewProvider {

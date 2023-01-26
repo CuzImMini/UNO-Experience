@@ -9,9 +9,9 @@ import SwiftUI
 import MultipeerConnectivity
 
 struct ConnectionView: View {
-    
+
     @EnvironmentObject var engine: MP_Session
-        
+
     var body: some View {
         VStack {
             Text("Willkommen zu UNO-Experience!")
@@ -19,10 +19,11 @@ struct ConnectionView: View {
             Spacer().frame(maxHeight: 50)
             Text("Verbundene Geräte \(engine.connectedPeers.count):")
             Text(String(describing: engine.connectedPeers.map(\.displayName)))
-            
-            
+
+
             Spacer().frame(maxHeight: 100)
-        }    }
+        }
+    }
 }
 
 struct ConnectionView_Previews: PreviewProvider {

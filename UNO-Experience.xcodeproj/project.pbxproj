@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EC80B40F297ED9A3008DF2D2 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC80B40E297ED9A3008DF2D2 /* CardView.swift */; };
+		EC7DE4626BFA72271CBAA50D /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DE462FE456100423D25D9 /* ColorPickerView.swift */; };
+		EC7DECC98C40C455F4914B1A /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DE462FE456100423D25D9 /* ColorPickerView.swift */; };
+		EC80B4112981A1D3008DF2D2 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC80B4102981A1D3008DF2D2 /* Card.swift */; };
+		EC80B4122981A1D3008DF2D2 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC80B4102981A1D3008DF2D2 /* Card.swift */; };
+		EC80B41429827374008DF2D2 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC80B41329827374008DF2D2 /* CardView.swift */; };
+		EC80B41529827374008DF2D2 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC80B41329827374008DF2D2 /* CardView.swift */; };
+		EC80B417298275B3008DF2D2 /* CardStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC80B416298275B3008DF2D2 /* CardStackView.swift */; };
 		ECA880292979428A00DE4AC8 /* UNO_ClientApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA880282979428A00DE4AC8 /* UNO_ClientApp.swift */; };
 		ECA880302979428B00DE4AC8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECA8802F2979428B00DE4AC8 /* Preview Assets.xcassets */; };
 		ECA8803B297942B800DE4AC8 /* UNO_HostApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8803A297942B800DE4AC8 /* UNO_HostApp.swift */; };
@@ -31,7 +37,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EC80B40E297ED9A3008DF2D2 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		EC7DE462FE456100423D25D9 /* ColorPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
+		EC80B4102981A1D3008DF2D2 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		EC80B41329827374008DF2D2 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		EC80B416298275B3008DF2D2 /* CardStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStackView.swift; sourceTree = "<group>"; };
 		ECA880262979428A00DE4AC8 /* UNO-Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UNO-Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECA880282979428A00DE4AC8 /* UNO_ClientApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNO_ClientApp.swift; sourceTree = "<group>"; };
 		ECA8802F2979428B00DE4AC8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -121,7 +130,7 @@
 				ECC39742297C6E880033FBD4 /* ConnectionView.swift */,
 				ECC39744297C6EDC0033FBD4 /* DeckView.swift */,
 				ECC39746297C70CF0033FBD4 /* HostSessionManager.swift */,
-				EC80B40E297ED9A3008DF2D2 /* CardView.swift */,
+				EC80B416298275B3008DF2D2 /* CardStackView.swift */,
 			);
 			path = "UNO-Host";
 			sourceTree = "<group>";
@@ -141,6 +150,9 @@
 				ECC39733297C4AA70033FBD4 /* GameStates.swift */,
 				ECA88072297973D700DE4AC8 /* AppDelegate.swift */,
 				ECC39736297C4B390033FBD4 /* GameEngine.swift */,
+				EC80B4102981A1D3008DF2D2 /* Card.swift */,
+				EC80B41329827374008DF2D2 /* CardView.swift */,
+				EC7DE462FE456100423D25D9 /* ColorPickerView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -246,13 +258,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECA88069297951BD00DE4AC8 /* MainMenu.swift in Sources */,
+				EC80B4112981A1D3008DF2D2 /* Card.swift in Sources */,
 				ECC39737297C4B390033FBD4 /* GameEngine.swift in Sources */,
 				ECA88073297973D700DE4AC8 /* AppDelegate.swift in Sources */,
+				EC80B41429827374008DF2D2 /* CardView.swift in Sources */,
 				ECC3973E297C51D60033FBD4 /* DeckView.swift in Sources */,
 				ECC3973C297C51A70033FBD4 /* ConnectionView.swift in Sources */,
 				ECC39749297C71080033FBD4 /* ClientSessionManager.swift in Sources */,
 				ECC39734297C4AA70033FBD4 /* GameStates.swift in Sources */,
 				ECA880292979428A00DE4AC8 /* UNO_ClientApp.swift in Sources */,
+				EC7DE4626BFA72271CBAA50D /* ColorPickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,14 +276,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECA88074297973D700DE4AC8 /* AppDelegate.swift in Sources */,
-				EC80B40F297ED9A3008DF2D2 /* CardView.swift in Sources */,
 				ECC39738297C4B390033FBD4 /* GameEngine.swift in Sources */,
+				EC80B417298275B3008DF2D2 /* CardStackView.swift in Sources */,
 				ECA8803D297942B800DE4AC8 /* MainMenu.swift in Sources */,
 				ECC39747297C70CF0033FBD4 /* HostSessionManager.swift in Sources */,
 				ECC39745297C6EDC0033FBD4 /* DeckView.swift in Sources */,
 				ECC39743297C6E880033FBD4 /* ConnectionView.swift in Sources */,
+				EC80B4122981A1D3008DF2D2 /* Card.swift in Sources */,
 				ECC39735297C4AA70033FBD4 /* GameStates.swift in Sources */,
+				EC80B41529827374008DF2D2 /* CardView.swift in Sources */,
 				ECA8803B297942B800DE4AC8 /* UNO_HostApp.swift in Sources */,
+				EC7DECC98C40C455F4914B1A /* ColorPickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +343,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -379,6 +399,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -401,9 +423,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "UNO-Client/Info.plist";
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
-				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = Bitte;
-				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Akzeptieren bitte";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Lokales Netzwerk wäre Babamäßig";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -437,9 +457,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "UNO-Client/Info.plist";
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
-				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = Bitte;
-				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Akzeptieren bitte";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Lokales Netzwerk wäre Babamäßig";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
