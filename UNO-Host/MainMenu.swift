@@ -24,13 +24,13 @@ struct MainMenu: View {
                     .environmentObject(self.engine)
         case .loose:
             VStack {
-            Text("Das Spiel ist zuende!")
-            Text("Platzhalter für Neustartknopf")
+                Text("Das Spiel ist zuende!")
+                Text("Platzhalter für Neustartknopf")
             }
         case .win:
             VStack {
-            Text("Das Spiel ist zuende!")
-            Text("Platzhalter für Neustartknopf")
+                Text("Das Spiel ist zuende!")
+                Text("Platzhalter für Neustartknopf")
             }
         }
 

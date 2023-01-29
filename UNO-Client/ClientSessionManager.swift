@@ -10,15 +10,16 @@ import Foundation
 import os
 
 class MP_Session: NSObject, ObservableObject {
+
     //Bonjour-Erkennungs-Zeichen
     private let serviceType = "unoexperience"
     //Peer-ID für ausführendes Gerät
     private var myPeerId = MCPeerID(displayName: UIDevice.current.name)
     //Advertiser & Browser zum suchen und finden anderer Geräte
-    private let serviceAdvertiser: MCNearbyServiceAdvertiser
-    private let serviceBrowser: MCNearbyServiceBrowser
+    private var serviceAdvertiser: MCNearbyServiceAdvertiser?
+    private var serviceBrowser: MCNearbyServiceBrowser?
     //Session, über die Daten empfangen und ausgelesen werden können
-    private let session: MCSession
+    private var session: MCSession?
     //Logger für Konsole
     private let log = Logger()
 
@@ -29,10 +30,9 @@ class MP_Session: NSObject, ObservableObject {
     //True wenn genau 2 Geräte verbunden
     @Published var isReady: Bool = false
     //aktuelle Ansicht auf den Geräten...
-    //To-DO PLanung Ansichten (wahrscheinlich 1. Hauptmenü, 2. Spielmenü, 2.1 Unokarten mit ListView
     @Published var viewState: ViewStates = .mainMenu
     @Published var activeCard: Cards = .RED_ZERO
-    @Published var activePlayer: activePlayer = .playerOne
+    @Published var activePlayer: ActivePlayer = .playerOne
     @Published var hasPlayed: Bool = false
 
     //Variable um auf GameEngine zuzugreifen
@@ -40,39 +40,46 @@ class MP_Session: NSObject, ObservableObject {
 
     //initializer
     override init() {
-        session = MCSession(peer: myPeerId, securityIdentity: nil, encryptionPreference: .none)
-        serviceAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerId, discoveryInfo: nil, serviceType: serviceType)
-        serviceBrowser = MCNearbyServiceBrowser(peer: myPeerId, serviceType: serviceType)
 
         super.init()
 
         self.gameHandler = GameEngine(sessionHandler: self)
 
-        session.delegate = self
-        serviceAdvertiser.delegate = self
-        serviceBrowser.delegate = self
-
-        serviceBrowser.startBrowsingForPeers()
-        serviceAdvertiser.startAdvertisingPeer()
 
     }
 
     deinit {
-        serviceBrowser.stopBrowsingForPeers()
-        serviceAdvertiser.stopAdvertisingPeer()
+        serviceBrowser?.stopBrowsingForPeers()
+        serviceAdvertiser?.stopAdvertisingPeer()
     }
 
     //Jeder gesendete Traffic läuft hierüber
     func sendTraffic(data: Data) {
-        self.log.info("Daten gesendet an \(self.session.connectedPeers) Geräte")
+        print(("Daten \(String(data: data, encoding: .isoLatin1)!) gesendet an Geräte"))
 
         do {
-            try session.send(data, toPeers: session.connectedPeers, with: .reliable)
+            try session?.send(data, toPeers: session?.connectedPeers ?? [], with: .reliable)
         } catch {
             log.error("Error for sending: \(String(describing: error))")
         }
     }
 
+    func goOnline(username: String) {
+        self.myPeerId = MCPeerID(displayName: username)
+
+        session = MCSession(peer: self.myPeerId, securityIdentity: nil, encryptionPreference: .none)
+        serviceAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerId, discoveryInfo: nil, serviceType: serviceType)
+        serviceBrowser = MCNearbyServiceBrowser(peer: myPeerId, serviceType: serviceType)
+
+
+        session?.delegate = self
+        serviceAdvertiser?.delegate = self
+        serviceBrowser?.delegate = self
+
+
+        serviceBrowser?.startBrowsingForPeers()
+        serviceAdvertiser?.startAdvertisingPeer()
+    }
 
 }
 
@@ -85,7 +92,8 @@ extension MP_Session: MCNearbyServiceAdvertiserDelegate {
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
         log.info("didReceiveInvitationFromPeer \(peerID)")
         invitationHandler(true, session)
-
+        serviceAdvertiser?.stopAdvertisingPeer()
+        serviceBrowser?.stopBrowsingForPeers()
     }
 
 }
@@ -103,7 +111,6 @@ extension MP_Session: MCNearbyServiceBrowserDelegate {
 
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
         log.info("ServiceBrowser lost peer: \(peerID)")
-        self.gameHandler.cancelGame()
 
     }
 

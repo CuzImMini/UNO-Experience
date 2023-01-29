@@ -1,5 +1,5 @@
 //
-//  DeckView.swift
+//  ClientDeckView.swift
 //  UNO-Host
 //
 //  Created by Paul Cornelissen on 21.01.23.
@@ -20,13 +20,9 @@ struct DeckView: View {
                     self.engine.gameHandler.cancelGame()
                 }
                         .buttonStyle(.bordered)
-                        .padding(.horizontal, 25)
+                        .padding(25)
                 Spacer()
-                Button(engine.activePlayer.rawValue) {
-                }
-                        .buttonStyle(.bordered)
-                        .padding(.horizontal, 25)
-                        .foregroundColor(.black)
+
             }
 
             Spacer()
@@ -136,6 +132,7 @@ struct DeckView: View {
         }
 
     }
+
 }
 
 struct DeckView_Previews: PreviewProvider {

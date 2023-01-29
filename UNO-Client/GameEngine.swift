@@ -29,8 +29,7 @@ class GameEngine: ObservableObject {
     //Der gesamte Datenverkehr läuft über diese Funktion
     func trafficHandler(data: Data) {
         //Logging
-        log.info("Datenpaket: \(data) empfangen.")
-        print(String(data: data, encoding: .isoLatin1)!)
+        log.info("Datenpaket: \(String(data: data, encoding: .isoLatin1)!) empfangen.")
 
         //Enkodierung zu String und Auswahl Vorgang
         switch String(data: data, encoding: .isoLatin1) {
@@ -42,6 +41,8 @@ class GameEngine: ObservableObject {
             self.cancelGame()
         case GameTraffic.win.rawValue:
             self.looseHandler()
+        case GameTraffic.skip.rawValue:
+            self.skipHandler()
                 //Wenn eine Spielaktion empfangen wird
         case .some(_):
             self.gameActionHandler(data: data)
@@ -249,16 +250,6 @@ class GameEngine: ObservableObject {
         }
     }
 
-    //Wechseln des Gamestatus
-    //TO-DO
-    //- no game
-    //- running
-    //- ended mit siegeranzeige und resetknopf
-
-    func changeGameState(viewState: ViewStates, gameState: GameStates) {
-        self.sessionHandler.sendTraffic(data: gameState.rawValue.data(using: .isoLatin1)!)
-
-    }
 
     //Wechseln der Anzeigemodi auf den Endgeräten
     func changeViewState(viewState: ViewStates) {
@@ -269,7 +260,6 @@ class GameEngine: ObservableObject {
         DispatchQueue.main.async {
             self.sessionHandler.viewState = .inGame
         }
-
     }
 
     func startGameEverywhere() {
@@ -293,13 +283,8 @@ class GameEngine: ObservableObject {
             self.sessionHandler.activeCard = card
         }
 
+        sessionHandler.activePlayer = ActivePlayer.otherPlayer(sessionHandler.activePlayer)()
 
-        if self.sessionHandler.activePlayer == .playerOne {
-            self.sessionHandler.activePlayer = .playerTwo
-        }
-        if self.sessionHandler.activePlayer == .playerTwo {
-            self.sessionHandler.activePlayer = .playerOne
-        }
         self.sessionHandler.hasPlayed = false
 
     }
@@ -315,6 +300,12 @@ class GameEngine: ObservableObject {
     func looseHandler() {
         DispatchQueue.main.async {
             self.sessionHandler.viewState = .loose
+        }
+    }
+
+    func skipHandler() {
+        DispatchQueue.main.async { [self] in
+            self.sessionHandler.activePlayer = ActivePlayer.otherPlayer(self.sessionHandler.activePlayer)()
         }
     }
 

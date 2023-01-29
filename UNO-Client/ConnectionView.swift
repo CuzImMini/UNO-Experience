@@ -10,15 +10,27 @@ import MultipeerConnectivity
 
 struct ConnectionView: View {
 
-    @EnvironmentObject var engine: MP_Session
+    @EnvironmentObject var sessionHandler: MP_Session
+
+    @State var username: String = UIDevice.current.name
 
     var body: some View {
         VStack {
             Text("Willkommen zu UNO-Experience!")
             Text("Starte das Spiel auf dem Host-Gerät")
             Spacer().frame(maxHeight: 50)
-            Text("Verbundene Geräte \(engine.connectedPeers.count):")
-            Text(String(describing: engine.connectedPeers.map(\.displayName)))
+            HStack(spacing: 20) {
+                Spacer().frame(maxWidth: 25)
+                Button("Verbinden") {
+                    sessionHandler.goOnline(username: username)
+                }
+                TextField("Username", text: $username)
+                Spacer().frame(maxWidth: 25)
+
+            }
+            Spacer().frame(maxHeight: 50)
+            Text("Verbundene Geräte \(sessionHandler.connectedPeers.count):")
+            Text(String(describing: sessionHandler.connectedPeers.map(\.displayName)))
 
 
             Spacer().frame(maxHeight: 100)

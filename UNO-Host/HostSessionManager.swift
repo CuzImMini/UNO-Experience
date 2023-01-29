@@ -34,8 +34,8 @@ class MP_Session: NSObject, ObservableObject {
 
     //Variable um auf GameEngine zuzugreifen
     @Published var gameHandler: GameEngine!
-    @Published var activeCard: Cards = .RED_ZERO
-    @Published var activePlayer: activePlayer = .playerOne
+    @Published var activeCard: Cards = Card.getRandom(id: 1).type
+    //@Published var activePlayer: ActivePlayer = .playerOne
     @Published var hasPlayed: Bool = false
 
 
@@ -104,7 +104,6 @@ extension MP_Session: MCNearbyServiceBrowserDelegate {
 
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
         log.info("ServiceBrowser lost peer: \(peerID)")
-        self.gameHandler.cancelGame()
 
     }
 

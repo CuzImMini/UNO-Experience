@@ -11,22 +11,22 @@ import SwiftUI
 
 struct MainMenu: View {
 
-    @StateObject var engine = MP_Session()
+    @StateObject var sesssionHandler = MP_Session()
 
     var body: some View {
 
-        switch self.engine.viewState {
+        switch self.sesssionHandler.viewState {
 
         case .mainMenu:
-            ConnectionView().environmentObject(self.engine)
+            ConnectionView().environmentObject(self.sesssionHandler)
 
         case .inGame:
-            DeckView().environmentObject(self.engine)
+            ClientDeckView().environmentObject(self.sesssionHandler)
 
         case .loose:
             Text("Du hast verloren du Opfer")
         case .win:
-            Text("Du hast gewonnen du Opfer")
+            Text("Du hast gewonnen wuuuwuuu")
         }
 
     }

@@ -1,5 +1,5 @@
 //
-//  GameStates.swift
+//  GameEnums.swift
 //  UNO-Experience
 //
 //  Created by Paul Cornelissen on 21.01.23.
@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 
-//Diese Enums werden später genutzt um die Kommunikation zwischen den Geräten zu erleichtern
 
 enum ViewStates: String {
 
@@ -31,6 +30,7 @@ enum GameTraffic: String {
     case startGame = "gamestart"
     case stopGame = "gamestop"
     case win = "win"
+    case skip = "skip"
 
 }
 
@@ -262,12 +262,12 @@ enum Cards: String, CaseIterable {
     }
 }
 
-enum activePlayer: String {
+enum ActivePlayer: String {
 
     case playerOne = "Spieler 1"
     case playerTwo = "Spieler 2"
 
-    func changePlayer() -> activePlayer {
+    func otherPlayer() -> ActivePlayer {
         switch self {
         case .playerOne:
             return .playerTwo
