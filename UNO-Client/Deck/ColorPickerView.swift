@@ -8,8 +8,9 @@ import SwiftUI
 struct ColorPickerView: View {
 
     @EnvironmentObject var engine: MP_Session
-    var card: CardView
+    var cardView: CardView
     @Binding var showColorPicker: Bool
+    @Binding var cardDeck: [Card]
 
     var body: some View {
 
@@ -53,6 +54,14 @@ struct ColorPickerView: View {
 
         engine.hasPlayed = true
         showColorPicker = false
+        
+        cardDeck.remove(at: cardView.card.id)
+
+        for object in cardDeck {
+            if object.id > cardView.card.id {
+                object.id -= 1
+            }
+        }
     }
 
 

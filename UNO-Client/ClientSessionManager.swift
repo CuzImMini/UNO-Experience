@@ -32,7 +32,6 @@ class MP_Session: NSObject, ObservableObject {
     //aktuelle Ansicht auf den Geräten...
     @Published var viewState: ViewStates = .mainMenu
     @Published var activeCard: Cards = .RED_ZERO
-    @Published var activePlayer: ActivePlayer = .playerOne
     @Published var hasPlayed: Bool = false
 
     //Variable um auf GameEngine zuzugreifen
@@ -55,7 +54,7 @@ class MP_Session: NSObject, ObservableObject {
 
     //Jeder gesendete Traffic läuft hierüber
     func sendTraffic(data: Data) {
-        print(("Daten \(String(data: data, encoding: .isoLatin1)!) gesendet an Geräte"))
+        print(("Daten \(String(data: data, encoding: .isoLatin1)!) gesendet"))
 
         do {
             try session?.send(data, toPeers: session?.connectedPeers ?? [], with: .reliable)
@@ -90,7 +89,7 @@ extension MP_Session: MCNearbyServiceAdvertiserDelegate {
     }
 
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-        log.info("didReceiveInvitationFromPeer \(peerID)")
+        log.info("Einladung erhalten von \(peerID)")
         invitationHandler(true, session)
         serviceAdvertiser?.stopAdvertisingPeer()
         serviceBrowser?.stopBrowsingForPeers()

@@ -35,7 +35,6 @@ class MP_Session: NSObject, ObservableObject {
     //Variable um auf GameEngine zuzugreifen
     @Published var gameHandler: GameEngine!
     @Published var activeCard: Cards = Card.getRandom(id: 1).type
-    //@Published var activePlayer: ActivePlayer = .playerOne
     @Published var hasPlayed: Bool = false
 
 

@@ -13,6 +13,7 @@ struct CardView: View {
     @State var card: Card
     @State var sessionHandler: MP_Session
     @State var showColorPicker: Bool = false
+    var clientDeckView: ClientDeckView
     
     let log = Logger()
 
@@ -21,45 +22,57 @@ struct CardView: View {
     var body: some View {
 
         Button(card.type.description) {
+            log.info("************")
+            log.info("aktive Karte: \(card.type.description) mit Farbe \(card.type.color) und Zahl \(card.type.number)")
+            log.info("Karte auf dem Stapel: \(sessionHandler.activeCard.description)")
+            log.info("------------")
+            //DEBUG
+            log.info("Erstelle Karten-Log:")
+            for object in cardDeck {
+                
+                log.info("Karte \(object.type.description) an Stelle \(object.id)")
+                
+            }
+            log.info("------------")
+
             if sessionHandler.hasPlayed == true {
+                log.info("Zug nicht möglich... Spieler hat bereits gelegt!")
                 return
             }
             if card.type == Cards.CHOOSE {
+                log.info("Wünschekarte ausgespielt!")
                 showColorPicker = true
 
             }
 
             if (card.type.color == sessionHandler.activeCard.color || card.type.number == sessionHandler.activeCard.number) {
+                log.info("Karte ausgespielt!")
                 sessionHandler.sendTraffic(data: card.type.rawValue.data(using: .isoLatin1)!)
                 sessionHandler.hasPlayed = true
-            }
-            log.info("Das Array ist \(cardDeck.count) groß!")
-            cardDeck.remove(at: card.id)
-            log.info("Die Karte \(card.type.description) mit der ID \(card.id) wurde aus dem Array entfernt.")
-            
-            
+                
+                cardDeck.remove(at: card.id)
 
-            for object in cardDeck {
-                if object.id > card.id {
-                    object.id -= 1
+                for object in cardDeck {
+                    if object.id > card.id {
+                        object.id -= 1
+                    }
                 }
             }
-
-            for card in cardDeck {
-                log.info("Karte bei Index \(card.id) ist eine \(card.type.description) Karte")
-            }
+            clientDeckView.skipButtonColor = .red
             
             if cardDeck.count == 0 {
-                sessionHandler.sendTraffic(data: GameTraffic.win.rawValue.data(using: .isoLatin1)!)
+                sessionHandler.gameHandler.winHandler()
+                log.info("Gewonnen")
 
             }
+            log.info("************")
 
         }
                 .buttonStyle(.bordered)
                 .foregroundColor(card.type.color)
                 .padding(.horizontal, 10)
                 .popover(isPresented: $showColorPicker) {
-                    ColorPickerView(card: self, showColorPicker: $showColorPicker).environmentObject(sessionHandler)
+                    ColorPickerView(cardView: self, showColorPicker: $showColorPicker, cardDeck: $cardDeck).environmentObject(sessionHandler)
                 }
 
     }

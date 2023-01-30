@@ -23,7 +23,7 @@ struct ConnectionView: View {
                 Spacer().frame(maxWidth: 25)
                 Button("Verbinden") {
                     sessionHandler.goOnline(username: username)
-                }
+                }.buttonStyle(.bordered)
                 TextField("Username", text: $username)
                 Spacer().frame(maxWidth: 25)
 

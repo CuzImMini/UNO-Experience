@@ -13,7 +13,7 @@ struct CardStackView: View {
 
     var body: some View {
         Text(card.description).foregroundColor(card.color).font(.system(size: 50))
-        //Image(systemName: card.description)
+        //Image(systemName: card.rawValue)
             
     }
 }
