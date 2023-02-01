@@ -11,17 +11,17 @@ import SwiftUI
 
 struct MainMenu: View {
 
-    @StateObject var sesssionHandler = MP_Session()
+    @StateObject var sessionHandler = MP_Session()
 
     var body: some View {
 
-        switch self.sesssionHandler.viewState {
+        switch sessionHandler.viewState {
 
         case .mainMenu:
-            ConnectionView().environmentObject(self.sesssionHandler)
+            ConnectionView().environmentObject(sessionHandler)
 
         case .inGame:
-            ClientDeckView().environmentObject(self.sesssionHandler)
+            ClientDeckView().environmentObject(sessionHandler)
 
         case .loose:
             Text("Du hast verloren du Opfer")

@@ -11,7 +11,7 @@ import os
 
 class MP_Session: NSObject, ObservableObject {
 
-    //Bonjour-Erkennungs-Zeichen
+    //Bonjour-Erkennungszeichen
     private let serviceType = "unoexperience"
     //Peer-ID für ausführendes Gerät
     private var myPeerId = MCPeerID(displayName: UIDevice.current.name)
@@ -42,7 +42,7 @@ class MP_Session: NSObject, ObservableObject {
 
         super.init()
 
-        self.gameHandler = GameEngine(sessionHandler: self)
+        gameHandler = GameEngine(sessionHandler: self)
 
 
     }
@@ -64,9 +64,9 @@ class MP_Session: NSObject, ObservableObject {
     }
 
     func goOnline(username: String) {
-        self.myPeerId = MCPeerID(displayName: username)
+        myPeerId = MCPeerID(displayName: username)
 
-        session = MCSession(peer: self.myPeerId, securityIdentity: nil, encryptionPreference: .none)
+        session = MCSession(peer: myPeerId, securityIdentity: nil, encryptionPreference: .none)
         serviceAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerId, discoveryInfo: nil, serviceType: serviceType)
         serviceBrowser = MCNearbyServiceBrowser(peer: myPeerId, serviceType: serviceType)
 
@@ -136,7 +136,7 @@ extension MP_Session: MCSessionDelegate {
     //Ausführung wenn Daten empfangen werden -> Weiterleitung an trafficHandler der GameEngine
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         log.info("didReceive bytes \(data.count) bytes")
-        self.gameHandler.trafficHandler(data: data)
+        gameHandler.trafficHandler(data: data)
     }
 
     public func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {

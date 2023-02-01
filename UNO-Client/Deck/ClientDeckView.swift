@@ -22,7 +22,7 @@ struct ClientDeckView: View {
     let log = Logger()
 
     var body: some View {
-        VStack() {
+        VStack {
             Spacer()
             Text("Hier kommen UNO Karten!")
 

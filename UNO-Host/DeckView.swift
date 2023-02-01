@@ -18,7 +18,7 @@ struct DeckView: View {
 
             HStack {
                 Button("Zurück") {
-                    self.sessionHandler.gameHandler.cancelGame()
+                    sessionHandler.gameHandler.cancelGame()
                 }
                         .padding(25)
                         .foregroundColor(.white)

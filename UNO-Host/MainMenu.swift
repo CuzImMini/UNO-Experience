@@ -14,14 +14,14 @@ struct MainMenu: View {
 
     var body: some View {
 
-        switch self.engine.viewState {
+        switch engine.viewState {
 
         case .mainMenu:
             ConnectionView()
-                    .environmentObject(self.engine)
+                    .environmentObject(engine)
         case .inGame:
             DeckView()
-                    .environmentObject(self.engine)
+                    .environmentObject(engine)
         case .loose:
             VStack {
                 Text("Das Spiel ist zuende!")

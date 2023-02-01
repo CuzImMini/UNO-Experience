@@ -36,19 +36,19 @@ class GameEngine: ObservableObject {
         switch String(data: data, encoding: .isoLatin1) {
 
         case GameTraffic.startGame.rawValue:
-            self.startGame()
+            startGame()
 
         case GameTraffic.stopGame.rawValue:
-            self.cancelGame()
+            cancelGame()
         case GameTraffic.win.rawValue:
-            self.looseHandler()
+            looseHandler()
                 //Wenn eine Spielaktion empfangen wird
         case .some(_):
-            self.gameActionHandler(data: data)
+            gameActionHandler(data: data)
 
                 //Wenn Paket nicht identifiziert werden kann
         case .none:
-            self.log.info("Nicht identifizierbares Datenpacket empfangen")
+            log.info("Nicht identifizierbares Datenpacket empfangen")
         }
 
 
@@ -328,7 +328,7 @@ class GameEngine: ObservableObject {
 
     //Wechseln der Anzeigemodi auf den Endgeräten
     func changeViewState(viewState: ViewStates) {
-        self.sessionHandler.viewState = viewState
+        sessionHandler.viewState = viewState
     }
 
     func startGame() {
@@ -341,8 +341,8 @@ class GameEngine: ObservableObject {
         DispatchQueue.main.async {
             self.sessionHandler.viewState = .inGame
         }
-        self.sessionHandler.sendTraffic(data: GameTraffic.startGame.rawValue.data(using: .isoLatin1)!)
-        self.sessionHandler.sendTraffic(data: sessionHandler.activeCard.rawValue.data(using: .isoLatin1)!)
+        sessionHandler.sendTraffic(data: GameTraffic.startGame.rawValue.data(using: .isoLatin1)!)
+        sessionHandler.sendTraffic(data: sessionHandler.activeCard.rawValue.data(using: .isoLatin1)!)
     }
 
     //TO-DO Spielabbruch bei Verbindungsverlust
@@ -350,7 +350,7 @@ class GameEngine: ObservableObject {
         DispatchQueue.main.async {
             self.sessionHandler.viewState = .mainMenu
         }
-        self.sessionHandler.sendTraffic(data: GameTraffic.stopGame.rawValue.data(using: .isoLatin1)!)
+        sessionHandler.sendTraffic(data: GameTraffic.stopGame.rawValue.data(using: .isoLatin1)!)
     }
 
     func changeCard(card: Cards) {
@@ -363,7 +363,7 @@ class GameEngine: ObservableObject {
     }
 
     func winHandler() {
-        self.sessionHandler.sendTraffic(data: GameTraffic.win.rawValue.data(using: .isoLatin1)!)
+        sessionHandler.sendTraffic(data: GameTraffic.win.rawValue.data(using: .isoLatin1)!)
         DispatchQueue.main.async {
             self.sessionHandler.viewState = .win
         }

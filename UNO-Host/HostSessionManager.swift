@@ -53,7 +53,7 @@ class MP_Session: NSObject, ObservableObject {
         }
         cardStack.append(Card(id: 0, type: activeCard))
 
-        self.gameHandler = GameEngine(sessionHandler: self)
+        gameHandler = GameEngine(sessionHandler: self)
 
         session.delegate = self
         serviceAdvertiser.delegate = self
@@ -74,7 +74,7 @@ class MP_Session: NSObject, ObservableObject {
     //Jeder gesendete Traffic läuft hierüber
 
     func sendTraffic(data: Data) {
-        self.log.info("Daten gesendet an \(self.session.connectedPeers) Geräte")
+        log.info("Daten gesendet an \(self.session.connectedPeers) Geräte")
 
         do {
             try session.send(data, toPeers: session.connectedPeers, with: .reliable)
@@ -138,7 +138,7 @@ extension MP_Session: MCSessionDelegate {
     //Ausführung wenn Daten empfangen werden -> Weiterleitung an trafficHandler der GameEngine
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         log.info("didReceive bytes \(data.count) bytes")
-        self.gameHandler.trafficHandler(data: data)
+        gameHandler.trafficHandler(data: data)
     }
 
     public func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
