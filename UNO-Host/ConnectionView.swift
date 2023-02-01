@@ -17,13 +17,13 @@ struct ConnectionView: View {
             Text("Willkommen zu UNO-Experience!")
             Text("Zum Starten des Spiels müssen genau zwei Geräte verbunden sein.")
             Spacer().frame(maxHeight: 50)
-            Text("Verbundene Geräte \(self.engine.connectedPeers.count)")
-            Text(String(describing: self.engine.connectedPeers.map(\.displayName)))
+            Text("Verbundene Geräte \(engine.connectedPeers.count)")
+            Text(String(describing: engine.connectedPeers.map(\.displayName)))
             Spacer().frame(maxHeight: 100)
 
-            if self.engine.isReady {
+            if engine.isReady {
                 Button("Start") {
-                    self.engine.gameHandler.startGameEverywhere()
+                    engine.gameHandler.startGameEverywhere()
                 }
                         .buttonStyle(.bordered)
             }
