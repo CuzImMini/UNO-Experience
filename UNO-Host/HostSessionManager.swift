@@ -34,7 +34,8 @@ class MP_Session: NSObject, ObservableObject {
 
     //Variable um auf GameEngine zuzugreifen
     @Published var gameHandler: GameEngine!
-    @Published var activeCard: Cards = Card.getRandom(id: 1).type
+    @Published var activeCard: Cards = Card.getRandom(id: 0).type
+    @Published var cardStack: [Card] = []
     @Published var hasPlayed: Bool = false
 
 
@@ -44,7 +45,13 @@ class MP_Session: NSObject, ObservableObject {
         serviceAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerId, discoveryInfo: nil, serviceType: serviceType)
         serviceBrowser = MCNearbyServiceBrowser(peer: myPeerId, serviceType: serviceType)
 
+
         super.init()
+
+        if activeCard == Cards.CHOOSE {
+            activeCard = Cards.RED_ONE
+        }
+        cardStack.append(Card(id: 0, type: activeCard))
 
         self.gameHandler = GameEngine(sessionHandler: self)
 
@@ -54,6 +61,8 @@ class MP_Session: NSObject, ObservableObject {
 
         serviceAdvertiser.startAdvertisingPeer()
         serviceBrowser.startBrowsingForPeers()
+
+
     }
 
     deinit {

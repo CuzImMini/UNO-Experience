@@ -15,10 +15,17 @@ class Card: Identifiable, Equatable, ObservableObject {
 
     var id: Int
     var type: Cards
+    var rotationRadian: Double?
 
     init(id: Int, type: Cards) {
         self.id = id
         self.type = type
+    }
+
+    init(id: Int, type: Cards, rotationRadian: Double) {
+        self.id = id
+        self.type = type
+        self.rotationRadian = rotationRadian
     }
 
     static func getRandom(amount: Int) -> [Card] {

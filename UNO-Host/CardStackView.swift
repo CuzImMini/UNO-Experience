@@ -10,16 +10,25 @@ import SwiftUI
 struct CardStackView: View {
 
     var card: Cards
+    var rotationRadian: Double
 
     var body: some View {
-        Text(card.description).foregroundColor(card.color).font(.system(size: 50))
-        //Image(systemName: card.rawValue)
-            
+        VStack {
+            Spacer()
+            HStack {
+                Spacer()
+                Image(card.rawValue).resizable().frame(maxWidth: 350, maxHeight: 600)
+                        .rotationEffect(.radians(rotationRadian))
+                Spacer()
+            }
+            Spacer()
+        }
+
     }
 }
 
 struct CardStackView_Previews: PreviewProvider {
     static var previews: some View {
-        CardStackView(card: .RED_ZERO)
+        CardStackView(card: .RED_ZERO, rotationRadian: Double.random(in: 0...6.2))
     }
 }

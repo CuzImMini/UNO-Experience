@@ -54,7 +54,7 @@ struct ColorPickerView: View {
 
         engine.hasPlayed = true
         showColorPicker = false
-        
+
         cardDeck.remove(at: cardView.card.id)
 
         for object in cardDeck {
