@@ -10,63 +10,85 @@ import os
 
 struct CardView: View {
 
+    //Variable die sagt, welche Karte der View repräsentiert
     @State var card: Card
+    //Variable um auf Session- & Gamehandler zuzugreifen
     @State var sessionHandler: MP_Session
-    @State var showColorPicker: Bool = false
-    var clientDeckView: ClientDeckView
 
+    //Variable die Popup steuert
+    @State var showColorPicker = false
+
+    //Logger für Konsole
     let log = Logger()
 
-    @Binding var cardDeck: [Card]
+    @State var size: Double = 1
+
 
     var body: some View {
 
+        //Kartenbild
         Image(card.type.rawValue)
                 .resizable()
                 .frame(maxWidth: 250, maxHeight: 450)
                 .padding(.horizontal, 5)
+                .scaleEffect(CGFloat(size))
+
+                //Geste beim Spielen der Karte
                 .onTapGesture {
-                    log.info("geklickte Karte: \(card.type.description) mit Farbe \(card.type.color) und Zahl \(card.type.number)")
-                    log.info("Karte auf dem Stapel: \(sessionHandler.activeCard.description)")
-                    log.info("Erstelle Karten-Log:")
-                    for object in cardDeck {
 
-                        log.info("Karte \(object.type.description) an Stelle \(object.id)")
-
-                    }
+                    //LOG-Anfang
+                    /*
+                log.info("geklickte Karte: \(card.type.description) mit Farbe \(card.type.color) und Zahl \(card.type.number)")
+                log.info("Karte auf dem Stapel: \(sessionHandler.activeCard.description)")
+                
+                log.info("Erstelle Karten-Log:")
+                for object in sessionHandler.cardDeck {
+                    
+                    log.info("Karte \(object.type.description) an Stelle \(object.id)")
+                    
+                }
+                */
+                    //LOG-Ende
 
                     if sessionHandler.hasPlayed == true {
-                        log.info("Zug nicht möglich... Spieler hat bereits gelegt!")
+                        log.warning("Zug nicht möglich... Spieler hat bereits gelegt!")
                         return
                     }
-                    if card.type == Cards.CHOOSE {
-                        log.info("Wünschekarte ausgespielt!")
+                    if card.type == Cards.CHOOSE && sessionHandler.activeCard.number != -1 {
+                        log.info("Wünschekarte ausgespielt! ShowColorPicker = \(showColorPicker)")
                         showColorPicker = true
-
+                        return
                     }
 
+                    if (card.type.color == .black || card.type.number == -1) {
+                        return
+                    }
                     if (card.type.color == sessionHandler.activeCard.color || card.type.number == sessionHandler.activeCard.number) {
 
-                        log.info("Karte \(card.type.description) ausgespielt!")
+                        withAnimation(.easeInOut(duration: 0.25)) {
 
-                        sessionHandler.sendTraffic(data: card.type.rawValue.data(using: .isoLatin1)!)
-                        sessionHandler.hasPlayed = true
-                        cardDeck.remove(at: card.id)
-                        for object in cardDeck {
-                            if object.id > card.id {
-                                object.id -= 1
-                            }
+                            self.size -= 1
+
                         }
-                    }
-                    clientDeckView.hasDrawn = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
 
-                    if cardDeck.count == 0 {
-                        sessionHandler.gameHandler.winHandler()
+                            log.info("Karte \(card.type.description) auf \(sessionHandler.activeCard.description) gelegt!")
+
+                            sessionHandler.sendTraffic(data: card.type.rawValue.data(using: .isoLatin1)!)
+
+                            if card.type.number != -2 {
+                                sessionHandler.hasPlayed = true
+                            }
+                            sessionHandler.cardDeck.remove(at: sessionHandler.cardDeck.firstIndex(where: { $0 == self.card })!)
+                            sessionHandler.gameHandler.hasDrawn = false
+                        }
 
                     }
+
+                    sessionHandler.activeCard = self.card.type
                 }
                 .popover(isPresented: $showColorPicker) {
-                    ColorPickerView(cardView: self, showColorPicker: $showColorPicker, cardDeck: $cardDeck).environmentObject(sessionHandler)
+                    ColorPickerView(showColorPicker: $showColorPicker, card: self.card).environmentObject(sessionHandler)
                 }
 
 
@@ -77,6 +99,6 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(card: Card(id: 1, type: .RED_ZERO), sessionHandler: MP_Session(), clientDeckView: ClientDeckView(), cardDeck: .constant([Card(id: 1, type: .RED_ZERO)]))
+        CardView(card: Card(id: 1, type: .RED_ZERO), sessionHandler: MP_Session())
     }
 }

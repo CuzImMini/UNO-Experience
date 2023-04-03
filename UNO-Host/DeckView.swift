@@ -25,24 +25,34 @@ struct DeckView: View {
                 Spacer()
 
             }
-
+            Spacer().frame(maxHeight: 100)
+            Text(sessionHandler.activeCard.description).foregroundColor(.white).rotationEffect(Angle(degrees: 180))
             Spacer()
             ZStack {
                 ForEach(sessionHandler.cardStack) { card in
-                    CardStackView(card: card.type, rotationRadian: card.rotationRadian ?? 0).id(UUID())
 
+                    if sessionHandler.cardStack.count - card.id < 16 && sessionHandler.cardStack.count - card.id != 1 {
+                        CardStackView(card: card.type, rotationRadian: card.rotationRadian ?? 0, animationCard: false).id(card.id)
+                    }
+                    if sessionHandler.cardStack.count - card.id == 1 {
+                        //oberste Karte
+
+                        CardStackView(card: card.type, rotationRadian: card.rotationRadian ?? 0, animationCard: true).id(card.id)
+
+
+                    }
 
                 }
 
             }
                     .frame(maxWidth: 350, maxHeight: 650)
-
             Spacer()
+            Text(sessionHandler.activeCard.description).foregroundColor(.white)
+            Spacer().frame(maxHeight: 100)
 
 
         }
-                .background(.gray
-                )
+                .background(.gray)
 
     }
 

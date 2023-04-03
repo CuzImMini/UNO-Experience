@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC59AF7D2994FC98003A8D9B /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC59AF7C2994FC97003A8D9B /* Card.swift */; };
 		EC7DE203A78CF3750C534F08 /* GameEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DE912E48E3BE3D12CFDDB /* GameEnums.swift */; };
 		EC7DE2BAEFB960DDD4767C14 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DED2387156D3578A14DEE /* Card.swift */; };
 		EC7DE364FC4EA7E49DDD0A9E /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DEFF665DF2D67D9A81962 /* ColorPickerView.swift */; };
-		EC7DE455546D014C81461384 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DED2387156D3578A14DEE /* Card.swift */; };
 		EC7DE72BFBCB793209B015B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DE3D31E482D58C7534A5F /* AppDelegate.swift */; };
 		EC7DE8A56D3FBFD79169B080 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DE7FE14D41460117EB940 /* GameEngine.swift */; };
 		EC7DE9172047A59A4751128F /* GameEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DE912E48E3BE3D12CFDDB /* GameEnums.swift */; };
@@ -35,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC59AF7C2994FC97003A8D9B /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		EC7DE2165EB9724E33C43972 /* GameEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
 		EC7DE3D31E482D58C7534A5F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC7DE7FE14D41460117EB940 /* GameEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
@@ -83,7 +84,6 @@
 			children = (
 				EC7DE912E48E3BE3D12CFDDB /* GameEnums.swift */,
 				EC7DE3D31E482D58C7534A5F /* AppDelegate.swift */,
-				EC7DED2387156D3578A14DEE /* Card.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -91,9 +91,9 @@
 		EC7DEE4814EBA70B868734E6 /* Deck */ = {
 			isa = PBXGroup;
 			children = (
-				EC7DEFF665DF2D67D9A81962 /* ColorPickerView.swift */,
-				EC7DEB900A250B4F6798E50E /* CardView.swift */,
 				EC7DEBA87B0B142D72AF638A /* ClientDeckView.swift */,
+				EC7DEB900A250B4F6798E50E /* CardView.swift */,
+				EC7DEFF665DF2D67D9A81962 /* ColorPickerView.swift */,
 			);
 			path = Deck;
 			sourceTree = "<group>";
@@ -127,6 +127,7 @@
 				ECC39748297C71080033FBD4 /* ClientSessionManager.swift */,
 				EC7DE2165EB9724E33C43972 /* GameEngine.swift */,
 				EC7DEE4814EBA70B868734E6 /* Deck */,
+				EC59AF7C2994FC97003A8D9B /* Card.swift */,
 			);
 			path = "UNO-Client";
 			sourceTree = "<group>";
@@ -142,6 +143,7 @@
 		ECA88039297942B800DE4AC8 /* UNO-Host */ = {
 			isa = PBXGroup;
 			children = (
+				EC7DED2387156D3578A14DEE /* Card.swift */,
 				ECA8803A297942B800DE4AC8 /* UNO_HostApp.swift */,
 				ECA8803C297942B800DE4AC8 /* MainMenu.swift */,
 				ECA88040297942B900DE4AC8 /* Preview Content */,
@@ -277,7 +279,7 @@
 				ECA880292979428A00DE4AC8 /* UNO_ClientApp.swift in Sources */,
 				EC7DE9172047A59A4751128F /* GameEnums.swift in Sources */,
 				EC7DE72BFBCB793209B015B0 /* AppDelegate.swift in Sources */,
-				EC7DE455546D014C81461384 /* Card.swift in Sources */,
+				EC59AF7D2994FC98003A8D9B /* Card.swift in Sources */,
 				EC7DEE61DD55FA822EECDF9A /* GameEngine.swift in Sources */,
 				EC7DE364FC4EA7E49DDD0A9E /* ColorPickerView.swift in Sources */,
 				EC7DEF34D758A2C5435567B4 /* CardView.swift in Sources */,
@@ -357,7 +359,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -413,7 +415,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -446,7 +448,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "de.paulcornelissen.UNO-Client";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.paulcornelissen.UNO-Experience";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -480,7 +482,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "de.paulcornelissen.UNO-Client";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.paulcornelissen.UNO-Experience";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -514,14 +516,14 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "de.paulcornelissen.UNO-Host";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.paulcornelissen.UNO-Experience";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -548,14 +550,14 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "de.paulcornelissen.UNO-Host";
+				PRODUCT_BUNDLE_IDENTIFIER = "de.paulcornelissen.UNO-Experience";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};

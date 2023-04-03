@@ -23,13 +23,11 @@ class MP_Session: NSObject, ObservableObject {
     //Logger für Konsole
     private let log = Logger()
 
-
     //öffentliche Variablen
     //Liste mit allen verbundenen Geräten
     @Published var connectedPeers: [MCPeerID] = []
-    //True wenn genau 2 Geräte verbunden
-    @Published var isReady: Bool = false
-    //aktuelle Ansicht auf den Geräten...
+
+    //aktuelle Ansicht auf Gerät...
     @Published var viewState: ViewStates = .mainMenu
     @Published var activeCard: Cards = .RED_ZERO
     @Published var hasPlayed: Bool = false
@@ -37,16 +35,19 @@ class MP_Session: NSObject, ObservableObject {
     //Variable um auf GameEngine zuzugreifen
     @Published var gameHandler: GameEngine!
 
+    //Kartendeck
+    @Published var cardDeck: [Card] = []
+
+
     //initializer
     override init() {
-
+        //Initialisierung Vererbungen
         super.init()
 
         gameHandler = GameEngine(sessionHandler: self)
-
-
     }
 
+    //Deaktiviert Bonjour-Dienste wenn App geschlossen wird
     deinit {
         serviceBrowser?.stopBrowsingForPeers()
         serviceAdvertiser?.stopAdvertisingPeer()
@@ -63,6 +64,7 @@ class MP_Session: NSObject, ObservableObject {
         }
     }
 
+    //Starten der Bonjour-Dienste
     func goOnline(username: String) {
         myPeerId = MCPeerID(displayName: username)
 
@@ -82,7 +84,7 @@ class MP_Session: NSObject, ObservableObject {
 
 }
 
-//automatisches Annehmen von Einladungen
+//automatisches Annehmen von Einladungen und Beenden der Suche für weitere Clients
 extension MP_Session: MCNearbyServiceAdvertiserDelegate {
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error) {
         log.error("ServiceAdvertiser didNotStartAdvertisingPeer: \(String(describing: error))")
@@ -97,7 +99,6 @@ extension MP_Session: MCNearbyServiceAdvertiserDelegate {
 
 }
 
-//automatisches Trennen bei Verbindungsverlust
 extension MP_Session: MCNearbyServiceBrowserDelegate {
     func browser(_ browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: Error) {
         log.error("ServiceBrowser didNotStartBrowsingForPeers: \(String(describing: error))")
@@ -119,17 +120,9 @@ extension MP_Session: MCNearbyServiceBrowserDelegate {
 extension MP_Session: MCSessionDelegate {
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         log.info("peer \(peerID) didChangeState: \(state.rawValue)")
-
         DispatchQueue.main.async {
             self.connectedPeers = session.connectedPeers
-
-            if self.connectedPeers.count == 2 {
-                self.isReady = true
-            } else {
-                self.isReady = false
-            }
         }
-
 
     }
 

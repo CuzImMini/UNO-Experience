@@ -24,9 +24,9 @@ struct MainMenu: View {
             ClientDeckView().environmentObject(sessionHandler)
 
         case .loose:
-            Text("Du hast verloren du Opfer")
+            Text("Du hast verloreeeeen")
         case .win:
-            Text("Du hast gewonnen wuuuwuuu")
+            Text("Du hast gewonnen. Respekt!")
         }
 
     }

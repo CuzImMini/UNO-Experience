@@ -10,27 +10,26 @@ import SwiftUI
 
 struct MainMenu: View {
 
-    @StateObject var engine = MP_Session()
+    @StateObject var sessionHandler = MP_Session()
 
     var body: some View {
 
-        switch engine.viewState {
+        switch sessionHandler.viewState {
 
         case .mainMenu:
             ConnectionView()
-                    .environmentObject(engine)
+                    .environmentObject(sessionHandler)
         case .inGame:
             DeckView()
-                    .environmentObject(engine)
-        case .loose:
-            VStack {
+                    .environmentObject(sessionHandler)
+        case .loose, .win:
+            VStack(spacing: 50) {
                 Text("Das Spiel ist zuende!")
-                Text("Platzhalter für Neustartknopf")
-            }
-        case .win:
-            VStack {
-                Text("Das Spiel ist zuende!")
-                Text("Platzhalter für Neustartknopf")
+                Button("Neustart") {
+
+                    sessionHandler.gameHandler.restart()
+
+                }
             }
         }
 

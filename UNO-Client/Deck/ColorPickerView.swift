@@ -7,62 +7,79 @@ import SwiftUI
 
 struct ColorPickerView: View {
 
-    @EnvironmentObject var engine: MP_Session
-    var cardView: CardView
+    @EnvironmentObject var sessionHandler: MP_Session
     @Binding var showColorPicker: Bool
-    @Binding var cardDeck: [Card]
+
+    var card: Card
 
     var body: some View {
 
         VStack(spacing: 50) {
-            Text("Color Picker")
+            Text("Wähle eine Farbe").padding(.vertical, 100).font(.system(size: 20))
+            Spacer().frame(maxHeight: 100)
             HStack(spacing: 50) {
-                Button("Rot") {
-                    colorPickHandler(card: .R_CHOOSE)
+                ZStack() {
+                    Rectangle().frame(width: 150, height: 150).foregroundColor(Color(red: 0.85, green: 0, blue: 0)).cornerRadius(15)
+                    Text("Rot").foregroundColor(.white)
                 }
-                        .buttonStyle(.bordered)
-                        .foregroundColor(Cards.R_CHOOSE.color)
-                Button("Blau") {
-                    colorPickHandler(card: .B_CHOOSE)
+                        .onTapGesture {
+                            colorPickHandler(card: .R_CHOOSE)
+                        }
+                ZStack() {
+                    Rectangle().frame(width: 150, height: 150).foregroundColor(.blue).cornerRadius(15)
+                    Text("Blau").foregroundColor(.white)
                 }
-                        .buttonStyle(.bordered)
-                        .foregroundColor(Cards.B_CHOOSE.color)
-
-
+                        .onTapGesture {
+                            colorPickHandler(card: .B_CHOOSE)
+                        }
             }
             HStack(spacing: 50) {
-                Button("Grün") {
-                    colorPickHandler(card: .G_CHOOSE)
-
+                ZStack() {
+                    Rectangle().frame(width: 150, height: 150).foregroundColor(.green).cornerRadius(15)
+                    Text("Grün").foregroundColor(.white)
                 }
-                        .buttonStyle(.bordered)
-                        .foregroundColor(Cards.G_CHOOSE.color)
-                Button("Gelb") {
-                    colorPickHandler(card: .Y_CHOOSE)
+                        .onTapGesture {
+                            colorPickHandler(card: .G_CHOOSE)
+                        }
+                ZStack() {
+                    Rectangle().frame(width: 150, height: 150).foregroundColor(.yellow).cornerRadius(15)
+                    Text("Gelb").foregroundColor(.white)
                 }
-                        .buttonStyle(.bordered)
-                        .foregroundColor(Cards.Y_CHOOSE.color)
+                        .onTapGesture {
+                            colorPickHandler(card: .Y_CHOOSE)
+                        }
 
             }
 
+
+            Spacer()
         }
-
     }
 
     func colorPickHandler(card: Cards) {
-        engine.sendTraffic(data: card.rawValue.data(using: .isoLatin1)!)
+        sessionHandler.sendTraffic(data: card.rawValue.data(using: .isoLatin1)!)
 
-        engine.hasPlayed = true
+        sessionHandler.hasPlayed = true
         showColorPicker = false
 
-        cardDeck.remove(at: cardView.card.id)
+        sessionHandler.cardDeck.remove(at: sessionHandler.cardDeck.firstIndex(where: { $0 == self.card })!)
 
-        for object in cardDeck {
-            if object.id > cardView.card.id {
-                object.id -= 1
-            }
+        sessionHandler.gameHandler.hasDrawn = false
+
+        sessionHandler.activeCard = card
+
+        if sessionHandler.cardDeck.count == 0 {
+            sessionHandler.gameHandler.winHandler()
+
         }
+
     }
 
 
+}
+
+struct ColorPicker_Preview: PreviewProvider {
+    static var previews: some View {
+        ColorPickerView(showColorPicker: .constant(true), card: Card(id: 1, type: .CHOOSE))
+    }
 }

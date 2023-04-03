@@ -38,6 +38,8 @@ class MP_Session: NSObject, ObservableObject {
     @Published var cardStack: [Card] = []
     @Published var hasPlayed: Bool = false
 
+    @Published var cardProbabilityDeck: [Cards] = []
+
 
     //initializer
     override init() {
@@ -78,11 +80,29 @@ class MP_Session: NSObject, ObservableObject {
 
         do {
             try session.send(data, toPeers: session.connectedPeers, with: .reliable)
+
         } catch {
             log.error("Error for sending: \(String(describing: error))")
         }
     }
 
+    func sendTraffic(data: Data, peer: MCPeerID) {
+
+        let mcPeerArray: [MCPeerID] = [peer]
+
+        do {
+            try session.send(data, toPeers: mcPeerArray, with: .reliable)
+
+        } catch {
+            log.error("Error for sending: \(String(describing: error))")
+        }
+
+    }
+
+    func stopConnectionMode() {
+        serviceBrowser.stopBrowsingForPeers()
+        serviceAdvertiser.stopAdvertisingPeer()
+    }
 
 }
 

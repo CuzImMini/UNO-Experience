@@ -12,30 +12,47 @@ struct ConnectionView: View {
 
     @EnvironmentObject var sessionHandler: MP_Session
 
-    @State var username: String = UIDevice.current.name
+    @State var username: String = "Spieler " + String(Int.random(in: 1...1000))
+
+    @State var backgroundColor: Color = Color(red: 0.9, green: 0, blue: 0)
 
     var body: some View {
         VStack {
-            Text("Willkommen zu UNO-Experience!")
-            Text("Starte das Spiel auf dem Host-Gerät")
+            Spacer()
+            Text("Willkommen zu UNO-Experience!").foregroundColor(.white)
+            Text("Starte das Spiel auf dem Host-Gerät").foregroundColor(.white)
             Spacer().frame(maxHeight: 50)
             HStack(spacing: 20) {
                 Spacer().frame(maxWidth: 25)
                 Button("Verbinden") {
                     sessionHandler.goOnline(username: username)
+
                 }
+                        .foregroundColor(.white)
                         .buttonStyle(.bordered)
+
                 TextField("Username", text: $username)
+                        .autocorrectionDisabled(true)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+
+
                 Spacer().frame(maxWidth: 25)
 
             }
             Spacer().frame(maxHeight: 50)
-            Text("Verbundene Geräte \(sessionHandler.connectedPeers.count):")
-            Text(String(describing: sessionHandler.connectedPeers.map(\.displayName)))
-
+            Text("Verbundene Geräte \(sessionHandler.connectedPeers.count)").foregroundColor(.white)
 
             Spacer().frame(maxHeight: 100)
+            Spacer()
         }
+                .background(backgroundColor).onChange(of: sessionHandler.connectedPeers) { peerNumber in
+                    if peerNumber.count == 2 {
+                        backgroundColor = .green
+                    } else {
+                        backgroundColor = Color(red: 0.9, green: 0, blue: 0)
+                    }
+
+                }
     }
 }
 

@@ -11,20 +11,23 @@ import os
 
 struct ClientDeckView: View {
 
+    //Übergabe der Variable um auf Session- & Gamehandler zugreifen zu können
     @EnvironmentObject var sessionHandler: MP_Session
 
-    @State var cardDeck: [Card] = Card.getRandom(amount: 8)
-    @State var refreshDummy: Bool = false
+    //Variable, die zeigt ob bereits eine Karte gezogen wurde
+    //Farbe des Skip-Buttons
+    @State var skipButtonColor: Color = .red
 
-    @State var hasDrawn: Bool = false
-    @State var skipButtonColor: Color = .blue
 
+    @State var lastDeckCount: Int = 8
+
+    //Logger für Konsole
     let log = Logger()
 
     var body: some View {
         VStack {
             Spacer()
-            Text("Hier kommen UNO Karten!")
+            Text("Hier sind \(sessionHandler.cardDeck.count) UNO Karten!").padding(20)
 
             if sessionHandler.hasPlayed {
                 Text("Anderer Spieler am Zug")
@@ -36,10 +39,11 @@ struct ClientDeckView: View {
 
             ScrollViewReader { scrollView in
                 ScrollView(.horizontal) {
-                    HStack {
-                        ForEach(cardDeck) { card in
-                            CardView(card: card, sessionHandler: sessionHandler, clientDeckView: self, cardDeck: $cardDeck).id(UUID())
+                    HStack() {
+                        ForEach(sessionHandler.cardDeck) { card in
 
+
+                            CardView(card: card, sessionHandler: sessionHandler).id(card.id)
                         }
 
                     }
@@ -47,28 +51,44 @@ struct ClientDeckView: View {
 
                 }
 
+                        .frame(width: 390, height: 650)
+
 
                 Spacer().frame(maxHeight: 100)
-
                 HStack(spacing: 30) {
 
                     Button("Karte ziehen") {
-                        print("Karte gezogen!")
-                        if hasDrawn {
+                        if (sessionHandler.gameHandler.hasDrawn || sessionHandler.hasPlayed) {
                             return
                         }
-                        cardDeck.append(Card.getRandom(id: cardDeck.count))
+                        log.info("Karte gezogen!")
 
-                        scrollView.scrollTo(cardDeck.last!.id, anchor: .center)
-                        hasDrawn = true
+                        //Hole neue Karte vom Wahrscheinlichkeitsstapel
+                        sessionHandler.gameHandler.requestDraw(amount: 1)
+
+                        sessionHandler.gameHandler.hasDrawn = true
                     }
                             .buttonStyle(.bordered)
                             .padding(20)
+                            .onChange(of: sessionHandler.cardDeck.count) { count in
+
+                                if lastDeckCount < count {
+                                    withAnimation(.easeInOut(duration: 250)) {
+                                        scrollView.scrollTo(sessionHandler.cardDeck.last!.id, anchor: .trailing)
+                                    }
+                                }
+                                lastDeckCount = count
+
+                                if count == 0 {
+                                    sessionHandler.gameHandler.winHandler()
+                                }
+
+                            }
 
                     Button("Aussetzen") {
-                        if hasDrawn {
+                        if sessionHandler.gameHandler.hasDrawn {
                             sessionHandler.sendTraffic(data: GameTraffic.skip.rawValue.data(using: .isoLatin1)!)
-                            hasDrawn = false
+                            sessionHandler.gameHandler.hasDrawn = false
                             sessionHandler.hasPlayed = true
                         }
 
@@ -76,9 +96,9 @@ struct ClientDeckView: View {
                             .buttonStyle(.bordered)
                             .padding(20)
                             .foregroundColor(skipButtonColor)
-                            .onChange(of: hasDrawn) { value in
+                            .onChange(of: sessionHandler.gameHandler.hasDrawn) { hasDrawn in
 
-                                if value {
+                                if hasDrawn {
                                     skipButtonColor = .blue
                                 } else {
                                     skipButtonColor = .red

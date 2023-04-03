@@ -11,24 +11,45 @@ struct ConnectionView: View {
 
     @EnvironmentObject var engine: MP_Session
 
+    @State var background: Color = Color.white
+    @State var textColor: Color = Color.black
+
 
     var body: some View {
-        VStack {
-            Text("Willkommen zu UNO-Experience!")
-            Text("Zum Starten des Spiels müssen genau zwei Geräte verbunden sein.")
-            Spacer().frame(maxHeight: 50)
-            Text("Verbundene Geräte \(engine.connectedPeers.count)")
-            Text(String(describing: engine.connectedPeers.map(\.displayName)))
-            Spacer().frame(maxHeight: 100)
+        HStack {
+            Spacer()
 
-            if engine.isReady {
-                Button("Start") {
-                    engine.gameHandler.startGameEverywhere()
+            VStack {
+                Spacer()
+                Text("Willkommen zu UNO-Experience!")
+                Text("Zum Starten des Spiels müssen genau zwei Geräte verbunden sein.")
+                Spacer()
+                        .frame(maxHeight: 50)
+                Text("Verbundene Geräte \(engine.connectedPeers.count)")
+                Text(String(describing: engine.connectedPeers.map(\.displayName)))
+                Spacer().frame(maxHeight: 100)
+
+                if engine.isReady {
+                    Button("Start") {
+                        engine.gameHandler.startGame()
+
+                    }
+                            .buttonStyle(.bordered)
                 }
-                        .buttonStyle(.bordered)
+                Spacer().onChange(of: engine.isReady) { bool in
+                    if engine.isReady {
+                        background = .green
+                        textColor = .white
+                    } else {
+                        background = .white
+                        textColor = .black
+                    }
+                }
             }
-
+                    .foregroundColor(textColor)
+            Spacer()
         }
+                .background(background)
     }
 }
 

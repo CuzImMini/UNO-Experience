@@ -11,6 +11,9 @@ struct CardStackView: View {
 
     var card: Cards
     var rotationRadian: Double
+    let animationCard: Bool
+
+    @State var visibility: Double = 1
 
     var body: some View {
         VStack {
@@ -23,12 +26,21 @@ struct CardStackView: View {
             }
             Spacer()
         }
+                .onAppear() {
+                    if animationCard {
+                        self.visibility = 1.5
+                        withAnimation(.easeInOut(duration: 0.35)) {
+                            self.visibility -= 0.5
+                        }
+                    }
+                }
+                .scaleEffect(CGFloat(visibility))
 
     }
 }
 
 struct CardStackView_Previews: PreviewProvider {
     static var previews: some View {
-        CardStackView(card: .RED_ZERO, rotationRadian: Double.random(in: 0...6.2))
+        CardStackView(card: .RED_ZERO, rotationRadian: Double.random(in: 0...6.2), animationCard: true)
     }
 }

@@ -34,7 +34,7 @@ enum GameTraffic: String {
 
 }
 
-enum Cards: String, CaseIterable {
+enum Cards: String, CaseIterable, Codable {
 
 
     case RED_ZERO = "Red0"
@@ -77,12 +77,22 @@ enum Cards: String, CaseIterable {
     case YELLOW_SEVEN = "Yellow7"
     case YELLOW_EIGHT = "Yellow8"
     case YELLOW_NINE = "Yellow9"
-    case CHOOSE = "Choose"
-    case Y_CHOOSE = "YChoose"
-    case G_CHOOSE = "GChoose"
-    case R_CHOOSE = "RChoose"
-    case B_CHOOSE = "BChoose"
-
+    case CHOOSE = "CHOOSE"
+    case Y_CHOOSE = "YCHOOSE"
+    case G_CHOOSE = "GCHOOSE"
+    case R_CHOOSE = "RCHOOSE"
+    case B_CHOOSE = "BCHOOSE"
+    case YFORCESKIP = "YFORCESKIP"
+    case GFORCESKIP = "GFORCESKIP"
+    case RFORCESKIP = "RFORCESKIP"
+    case BFORCESKIP = "BFORCESKIP"
+    case YELLOWDRAWTWO = "YELLOWDRAWTWO"
+    case GREENDRAWTWO = "GREENDRAWTWO"
+    case REDDRAWTWO = "REDDRAWTWO"
+    case BLUEDRAWTWO = "BLUEDRAWTWO"
+    
+    
+    
     var description: String {
         switch self {
         case .RED_ZERO: return "Rot 0"
@@ -130,6 +140,14 @@ enum Cards: String, CaseIterable {
         case .G_CHOOSE: return "Grün gewünscht"
         case .R_CHOOSE: return "Rot gewünscht"
         case .B_CHOOSE: return "Blau gewünscht"
+        case .YFORCESKIP: return "Gelb aussetzen"
+        case .GFORCESKIP: return "Grün aussetzen"
+        case .RFORCESKIP: return "Rot aussetzen"
+        case .BFORCESKIP: return "Blau aussetzen"
+        case .YELLOWDRAWTWO: return "Gelb zwei ziehen"
+        case .GREENDRAWTWO: return "Grün zwei ziehen"
+        case .REDDRAWTWO: return "Rot zwei ziehen"
+        case .BLUEDRAWTWO: return "Blau zwei ziehen"
 
 
         }
@@ -137,7 +155,8 @@ enum Cards: String, CaseIterable {
 
     var color: Color {
         switch self {
-        case .RED_ZERO: return Color.red
+        case .RED_ZERO:
+            return Color.red
         case .RED_ONE:
             return Color.red
         case .RED_TWO:
@@ -226,6 +245,22 @@ enum Cards: String, CaseIterable {
             return Color.red
         case .B_CHOOSE:
             return Color.blue
+        case .YFORCESKIP:
+            return Color.yellow
+        case .GFORCESKIP:
+            return Color.green
+        case .RFORCESKIP:
+            return Color.red
+        case .BFORCESKIP:
+            return Color.blue
+        case .YELLOWDRAWTWO:
+            return Color.yellow
+        case .GREENDRAWTWO:
+            return Color.green
+        case .REDDRAWTWO:
+            return Color.red
+        case .BLUEDRAWTWO:
+            return Color.blue
         }
     }
 
@@ -255,7 +290,10 @@ enum Cards: String, CaseIterable {
             return 9
         case .CHOOSE, .Y_CHOOSE, .G_CHOOSE, .R_CHOOSE, .B_CHOOSE:
             return -1
-
+        case .YFORCESKIP, .GFORCESKIP, .RFORCESKIP, .BFORCESKIP:
+            return -2
+        case .YELLOWDRAWTWO, .BLUEDRAWTWO, .REDDRAWTWO, .GREENDRAWTWO:
+            return -3
 
         }
 
@@ -273,6 +311,7 @@ enum ActivePlayer: String {
             return .playerTwo
         case .playerTwo:
             return .playerOne
+        
         }
     }
 
