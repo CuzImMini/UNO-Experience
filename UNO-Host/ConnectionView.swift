@@ -16,6 +16,7 @@ struct ConnectionView: View {
     @State var background: Color = Color.white
     @State var textColor: Color = Color.black
         
+    @State var animate = false
     
     var body: some View {
         HStack {
@@ -31,7 +32,7 @@ struct ConnectionView: View {
                 Text(String(describing: sessionHandler.connectedPeers.map(\.displayName)))
                 Spacer().frame(maxHeight: 100)
                 
-                if sessionHandler.connectedPeers.count == 2 {
+                if sessionHandler.connectedPeers.count > 1 {
                     HStack(spacing: 20) {
                         Spacer()
                         Stepper("Deckgröße: \(deckSize)", value: $deckSize).frame(maxWidth: 300).onChange(of: deckSize) {size in
@@ -40,15 +41,16 @@ struct ConnectionView: View {
                             }
                         }
                         Button("Start") {
-                            sessionHandler.gameHandler.startGame(deckSize: deckSize)
+                                sessionHandler.gameHandler.startGame(deckSize: deckSize)
                             
                         }
                         .buttonStyle(.bordered)
                         Spacer()
                     }
+
                 }
                 Spacer().onChange(of: sessionHandler.connectedPeers.count) { count in
-                    if count == 2 {
+                    if count > 1 {
                         background = .green
                         textColor = .white
                     } else {
@@ -57,7 +59,7 @@ struct ConnectionView: View {
                     }
                 }
                 .onAppear() {
-                    if sessionHandler.connectedPeers.count == 2 {
+                    if sessionHandler.connectedPeers.count > 1 {
                         background = .green
                         textColor = .white
                     } else {

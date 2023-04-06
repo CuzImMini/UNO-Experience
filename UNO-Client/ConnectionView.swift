@@ -46,7 +46,7 @@ struct ConnectionView: View {
             Spacer()
         }
                 .background(backgroundColor).onChange(of: sessionHandler.connectedPeers) { peerNumber in
-                    if peerNumber.count == 2 {
+                    if peerNumber.count > 1 {
                         backgroundColor = .green
                     } else {
                         backgroundColor = Color(red: 0.9, green: 0, blue: 0)

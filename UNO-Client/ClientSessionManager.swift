@@ -50,12 +50,20 @@ class MP_Session: NSObject, ObservableObject {
     //Jeder gesendete Traffic läuft hierüber
     func sendTraffic(recipient: String, prefix: String, packet1: String, packet2: String) {
         
-        print(("Daten \(recipient + ":" + prefix + ":" + packet1 + ":" + packet2) gesendet"))
-        
+        print(("Daten \(recipient + "#" + prefix + "#" + packet1 + "#" + packet2) gesendet"))
         let data = String(recipient + "#" + prefix + "#" + packet1 + "#" + packet2).data(using: .isoLatin1)!
         
+        var recipientPeerIDs = session?.connectedPeers ?? []
+        
+        if recipient == TargetNames.host.rawValue {
+            recipientPeerIDs = [(session?.connectedPeers.first(where: {$0.displayName == TargetNames.host.rawValue}))!]
+        }
+        else if recipient == TargetNames.allPlayers.rawValue {
+            recipientPeerIDs.remove(at: recipientPeerIDs.firstIndex(where: {$0.displayName == TargetNames.host.rawValue})!)
+        }
+        
         do {
-            try session?.send(data, toPeers: session?.connectedPeers ?? [], with: .reliable)
+            try session?.send(data, toPeers: recipientPeerIDs, with: .reliable)
         } catch {
             log.error("Error beim senden: \(String(describing: error))")
         }
@@ -118,6 +126,8 @@ class MP_Session: NSObject, ObservableObject {
                     self.gameHandler.cancelGame()
                 case GameActions.startGame.rawValue:
                     self.gameHandler.startGame()
+                case GameActions.announceActivePlayer.rawValue:
+                    self.gameHandler.playerAnnouncement()
                 default:
                     self.log.error("Fehler bei der Übertragung eines GameAction Packetes")
                 }
@@ -132,11 +142,11 @@ class MP_Session: NSObject, ObservableObject {
                     self.gameHandler.changeCard(cardRawValue: decodedDataArray[4], announce: false)
                 case CardActions.announceDeck.rawValue:
                     self.gameHandler.cardDeck = self.decodeCards(type: [Card].self, cardData: decodedDataArray[4]) as! [Card]
+                    self.gameHandler.lastDeckCount = self.gameHandler.cardDeck.count
+                    self.gameHandler.hasPlayed = true
                 case CardActions.drawnCardFromHost.rawValue:
                     let card: Card = self.decodeCards(type: Card.self, cardData: decodedDataArray[4]) as! Card
                     self.gameHandler.cardDeck.append(Card(id: self.gameHandler.cardDeck.last!.id + 1, type: card.type))
-                case CardActions.requestSkip.rawValue:
-                    self.gameHandler.skipHandler()
                     
                 default:
                     self.log.error("Fehler bei der Übertragung eines CardAction Packetes")

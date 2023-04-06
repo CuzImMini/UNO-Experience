@@ -15,7 +15,7 @@ class MP_Session: NSObject, ObservableObject {
     //Bonjour-Erkennungs-Zeichen
     private let serviceType = "unoexperience"
     //Peer-ID für ausführendes Gerät
-    private var myPeerId = MCPeerID(displayName: "Host")
+    private var myPeerId = MCPeerID(displayName: TargetNames.host.rawValue)
     //Advertiser & Browser zum suchen und finden anderer Geräte
     private let serviceAdvertiser: MCNearbyServiceAdvertiser
     private let serviceBrowser: MCNearbyServiceBrowser
@@ -60,12 +60,18 @@ class MP_Session: NSObject, ObservableObject {
     //Jeder gesendete Traffic läuft hierüber
     func sendTraffic(recipient: String, prefix: String, packet1: String, packet2: String) {
         
-        print(("Daten \(recipient + ":" + prefix + ":" + packet1 + ":" + packet2) gesendet"))
+        print(("Daten \(recipient + "#" + prefix + "#" + packet1 + "#" + packet2) gesendet"))
         
         let data = String(recipient + "#" + prefix + "#" + packet1 + "#" + packet2).data(using: .isoLatin1)!
         
+        var recipientPeerIDs = session.connectedPeers
+        
+        if (recipient != TargetNames.allPlayers.rawValue) && (recipient != TargetNames.allDevices.rawValue) {
+            recipientPeerIDs = [(session.connectedPeers.first(where: {$0.displayName == recipient}))!]
+        }
+        
         do {
-            try session.send(data, toPeers: session.connectedPeers, with: .reliable)
+            try session.send(data, toPeers: recipientPeerIDs, with: .reliable)
         } catch {
             log.error("Error beim senden: \(String(describing: error))")
         }
@@ -105,7 +111,7 @@ class MP_Session: NSObject, ObservableObject {
                 switch decodedDataArray[3] {
                     
                 case GameActions.win.rawValue:
-                    self.gameHandler.endGameHandler(winnerName: decodedDataArray[4])
+                    self.gameHandler.endGameHandler(winnerName: decodedDataArray[0])
                 case GameActions.stopGame.rawValue:
                     self.gameHandler.endGameHandler(winnerName: "")
                     
@@ -122,6 +128,8 @@ class MP_Session: NSObject, ObservableObject {
                     self.gameHandler.changeCard(cardRawValue: decodedDataArray[4])
                 case CardActions.requestCard.rawValue:
                     self.gameHandler.drawHandler(recipient: decodedDataArray[0], amount: Int(decodedDataArray[4])!)
+                case CardActions.requestSkip.rawValue:
+                    self.gameHandler.playerSequenceHandler()
                 default:
                     self.log.error("Fehler bei der Übertragung eines CardAction Packetes")
                     

@@ -32,7 +32,6 @@ enum GameActions: String {
     case startGame = "gamestart"
     case stopGame = "gamestop"
     case win = "win"
-    case announceName = "announceName"
     case announceActivePlayer = "announceActivePlayer"
 
 }

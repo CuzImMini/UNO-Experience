@@ -49,7 +49,7 @@ struct CardView: View {
                     }
 
                     //Wenn Farbe oder Nummer übereinstimmt
-                    if (card.type.color == sessionHandler.gameHandler.activeCard.color || card.type.number == sessionHandler.gameHandler.activeCard.number) {
+                    if (card.type.color == sessionHandler.gameHandler.activeCard.color) || (card.type.number == sessionHandler.gameHandler.activeCard.number) {
                         //Animation verschwinden im Deck
                         withAnimation(.easeInOut(duration: 0.35)) {
                             self.size -= 1
@@ -71,10 +71,10 @@ struct CardView: View {
                                 sessionHandler.gameHandler.hasPlayed = false
                             }
                         }
+                        sessionHandler.gameHandler.activeCard = self.card.type
 
                     }
 
-                    sessionHandler.gameHandler.activeCard = self.card.type
                 }
                 .popover(isPresented: $showColorPicker) {
                     ColorPickerView(showColorPicker: $showColorPicker, card: self.card).environmentObject(sessionHandler)

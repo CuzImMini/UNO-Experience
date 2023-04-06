@@ -10,7 +10,9 @@ import SwiftUI
 
 struct MainMenu: View {
 
-    @StateObject var sessionHandler = MP_Session()    
+    @StateObject var sessionHandler = MP_Session()
+    
+    @State var animate = false
 
     var body: some View {
 
@@ -29,13 +31,17 @@ struct MainMenu: View {
                     Text("\(sessionHandler.gameHandler.winnerName) hat gewonnen!")
                         .font(.system(size: 20))
                         .padding(20)
+                        .scaleEffect(self.animate ? 1.25 : 1   )
+                        .onAppear() {self.animate.toggle() }
                 }
                 Button("Neustart") {
 
-                    sessionHandler.gameHandler.startGame(deckSize: sessionHandler.gameHandler.cardDeckSize)
+                    sessionHandler.gameHandler.restartGame()
 
-                }
-            }
+                }.buttonStyle(.borderedProminent)
+                    
+                
+            }.animation(Animation.easeInOut(duration: 1.5).repeatForever(autoreverses: true), value: animate)
 
         }
 
