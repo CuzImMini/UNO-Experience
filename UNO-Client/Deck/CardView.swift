@@ -35,57 +35,46 @@ struct CardView: View {
 
                 //Geste beim Spielen der Karte
                 .onTapGesture {
-
-                    //LOG-Anfang
-                    /*
-                log.info("geklickte Karte: \(card.type.description) mit Farbe \(card.type.color) und Zahl \(card.type.number)")
-                log.info("Karte auf dem Stapel: \(sessionHandler.activeCard.description)")
-                
-                log.info("Erstelle Karten-Log:")
-                for object in sessionHandler.cardDeck {
-                    
-                    log.info("Karte \(object.type.description) an Stelle \(object.id)")
-                    
-                }
-                */
-                    //LOG-Ende
-
-                    if sessionHandler.hasPlayed == true {
-                        log.warning("Zug nicht möglich... Spieler hat bereits gelegt!")
+                    //Wenn Spieler schon gelegt hat
+                    if sessionHandler.gameHandler.hasPlayed == true {
                         return
                     }
-                    if card.type == Cards.CHOOSE && sessionHandler.activeCard.number != -1 {
-                        log.info("Wünschekarte ausgespielt! ShowColorPicker = \(showColorPicker)")
+                    //Wenn Wünsche auf Wünsche gelegt wird
+                    if card.type.number == -1 && sessionHandler.gameHandler.activeCard.number == -1 {return}
+                    
+                    //Wenn Spieler Wünschekarte legt
+                    if card.type == Cards.CHOOSE {
                         showColorPicker = true
                         return
                     }
 
-                    if (card.type.color == .black || card.type.number == -1) {
-                        return
-                    }
-                    if (card.type.color == sessionHandler.activeCard.color || card.type.number == sessionHandler.activeCard.number) {
-
-                        withAnimation(.easeInOut(duration: 0.25)) {
-
+                    //Wenn Farbe oder Nummer übereinstimmt
+                    if (card.type.color == sessionHandler.gameHandler.activeCard.color || card.type.number == sessionHandler.gameHandler.activeCard.number) {
+                        //Animation verschwinden im Deck
+                        withAnimation(.easeInOut(duration: 0.35)) {
                             self.size -= 1
-
                         }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                        //Nach Animation Code ausführen:
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+                            sessionHandler.sendTraffic(recipient: TargetNames.allDevices.rawValue, prefix: TrafficTypes.cardActionIdentifier.rawValue, packet1: CardActions.playCard.rawValue, packet2: card.type.rawValue)
 
-                            log.info("Karte \(card.type.description) auf \(sessionHandler.activeCard.description) gelegt!")
 
-                            sessionHandler.sendTraffic(data: card.type.rawValue.data(using: .isoLatin1)!)
-
-                            if card.type.number != -2 {
-                                sessionHandler.hasPlayed = true
-                            }
-                            sessionHandler.cardDeck.remove(at: sessionHandler.cardDeck.firstIndex(where: { $0 == self.card })!)
+                            //Entferne Karte aus Stapel
+                            sessionHandler.gameHandler.cardDeck.remove(at: sessionHandler.gameHandler.cardDeck.firstIndex(where: { $0 == self.card })!)
+                            
+                            //Setze Karte ziehen Knopf zurück
                             sessionHandler.gameHandler.hasDrawn = false
+                            sessionHandler.gameHandler.hasPlayed = true
+
+                            //Wenn Aussatzen, dann kann nochmal gelegt werden
+                            if card.type.number == -2 {
+                                sessionHandler.gameHandler.hasPlayed = false
+                            }
                         }
 
                     }
 
-                    sessionHandler.activeCard = self.card.type
+                    sessionHandler.gameHandler.activeCard = self.card.type
                 }
                 .popover(isPresented: $showColorPicker) {
                     ColorPickerView(showColorPicker: $showColorPicker, card: self.card).environmentObject(sessionHandler)

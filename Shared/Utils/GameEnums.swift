@@ -18,24 +18,43 @@ enum ViewStates: String {
 
 }
 
-enum GameStates: String {
+enum TargetNames: String {
+    
+    case allDevices = "atAll"
+    case allPlayers = "atPlayers"
+    case host = "HOST"
 
-    case running = "running"
-    case noGame = "nogame"
 
 }
 
-enum GameTraffic: String {
+enum GameActions: String {
 
     case startGame = "gamestart"
     case stopGame = "gamestop"
     case win = "win"
-    case skip = "skip"
+    case announceName = "announceName"
+    case announceActivePlayer = "announceActivePlayer"
 
 }
 
-enum Cards: String, CaseIterable, Codable {
+enum CardActions: String {
 
+    case announceCard = "announceCard"
+    case playCard = "playCard"
+    case announceDeck = "announceDeck"
+    case requestCard = "requestDraw"
+    case drawnCardFromHost = "drawnCardFromHost"
+    case requestSkip = "requestSkip"
+
+}
+
+enum TrafficTypes: String {
+    
+    case gameActionIdentifier = "gametraffic"
+    case cardActionIdentifier = "cardAction"
+}
+
+enum Cards: String, CaseIterable, Codable {
 
     case RED_ZERO = "Red0"
     case RED_ONE = "Red1"
@@ -299,7 +318,7 @@ enum Cards: String, CaseIterable, Codable {
 
     }
 }
-
+/*
 enum ActivePlayer: String {
 
     case playerOne = "Spieler 1"
@@ -316,4 +335,5 @@ enum ActivePlayer: String {
     }
 
 }
+*/
 

@@ -11,7 +11,6 @@ struct DeckView: View {
 
     @EnvironmentObject var sessionHandler: MP_Session
 
-
     var body: some View {
 
         VStack {
@@ -26,18 +25,18 @@ struct DeckView: View {
 
             }
             Spacer().frame(maxHeight: 100)
-            Text(sessionHandler.activeCard.description).foregroundColor(.white).rotationEffect(Angle(degrees: 180))
+            Text(sessionHandler.gameHandler.activeCard.description).foregroundColor(.white).rotationEffect(Angle(degrees: 180))
             Spacer()
             ZStack {
-                ForEach(sessionHandler.cardStack) { card in
+                ForEach(sessionHandler.gameHandler.cardStack) { card in
 
-                    if sessionHandler.cardStack.count - card.id < 16 && sessionHandler.cardStack.count - card.id != 1 {
-                        CardStackView(card: card.type, rotationRadian: card.rotationRadian ?? 0, animationCard: false).id(card.id)
+                    if sessionHandler.gameHandler.cardStack.count - card.id < 16 && sessionHandler.gameHandler.cardStack.count - card.id != 1 {
+                        
+                        CardStackView(card: card.type, rotationDegree: card.rotationDegree ?? 0, animationCard: false).id(card.id)
                     }
-                    if sessionHandler.cardStack.count - card.id == 1 {
-                        //oberste Karte
-
-                        CardStackView(card: card.type, rotationRadian: card.rotationRadian ?? 0, animationCard: true).id(card.id)
+                    if sessionHandler.gameHandler.cardStack.count - card.id == 1 {
+                        //oberste Karte mit aktivierten Animationen
+                        CardStackView(card: card.type, rotationDegree: card.rotationDegree ?? 0, animationCard: true).id(card.id)
 
 
                     }
@@ -47,7 +46,7 @@ struct DeckView: View {
             }
                     .frame(maxWidth: 350, maxHeight: 650)
             Spacer()
-            Text(sessionHandler.activeCard.description).foregroundColor(.white)
+            Text(sessionHandler.gameHandler.activeCard.description).foregroundColor(.white)
             Spacer().frame(maxHeight: 100)
 
 
@@ -60,6 +59,7 @@ struct DeckView: View {
 
 struct DeckView_Previews: PreviewProvider {
     static var previews: some View {
-        DeckView().environmentObject(MP_Session())
+        DeckView()
+            .environmentObject(MP_Session())
     }
 }

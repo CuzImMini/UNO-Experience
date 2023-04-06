@@ -10,11 +10,11 @@ import SwiftUI
 
 struct MainMenu: View {
 
-    @StateObject var sessionHandler = MP_Session()
+    @StateObject var sessionHandler = MP_Session()    
 
     var body: some View {
 
-        switch sessionHandler.viewState {
+        switch sessionHandler.gameHandler.viewState {
 
         case .mainMenu:
             ConnectionView()
@@ -25,13 +25,20 @@ struct MainMenu: View {
         case .loose, .win:
             VStack(spacing: 50) {
                 Text("Das Spiel ist zuende!")
+                if sessionHandler.gameHandler.winnerName != "" {
+                    Text("\(sessionHandler.gameHandler.winnerName) hat gewonnen!")
+                        .font(.system(size: 20))
+                        .padding(20)
+                }
                 Button("Neustart") {
 
-                    sessionHandler.gameHandler.restart()
+                    sessionHandler.gameHandler.startGame(deckSize: sessionHandler.gameHandler.cardDeckSize)
 
                 }
             }
+
         }
+
 
 
     }

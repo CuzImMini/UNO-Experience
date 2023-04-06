@@ -6,66 +6,45 @@
 //
 
 import Foundation
+import SwiftUI
 
 class Card: Identifiable, Equatable, ObservableObject, Codable {
 
+    //Mache Karten vergleichbar
     static func ==(lhs: Card, rhs: Card) -> Bool {
         lhs.type == rhs.type && lhs.id == rhs.id
     }
 
-
+    //Card variables
     var id: Int
     var type: Cards
 
-    var rotationRadian: Double?
+    //Optional variable for animation purpose
+    var rotationDegree: Int?
 
+    //Card init
     init(id: Int, type: Cards) {
         self.id = id
         self.type = type
     }
 
-    init(id: Int, type: Cards, rotationRadian: Double) {
+    init(id: Int, type: Cards, rotationDegree: Int) {
         self.id = id
         self.type = type
-        self.rotationRadian = rotationRadian
+        self.rotationDegree = rotationDegree
     }
 
-    static func getRandom(amount: Int) -> [Card] {
-        var array: [Card] = []
-        let range = 0...(amount - 1)
 
-        for i in range {
-
-            let card = getRandom(id: i)
-
-            array.append(card)
-
-        }
-
-        return array
-
-
-    }
-
-    static func getRandom(id: Int) -> Card {
-        let card = Card(id: id, type: Cards.allCases.randomElement() ?? .BLUE_ONE)
-
-        if card.type == .Y_CHOOSE || card.type == .R_CHOOSE || card.type == .G_CHOOSE || card.type == .B_CHOOSE {
-            return getRandom(id: id)
-        } else {
-            return card
-        }
-    }
-
+    //Get Random card with id from Probability-Deck
     static func getRandom(id: Int, sessionHandler: MP_Session) -> Card {
 
-        if sessionHandler.cardProbabilityDeck == [] {
-            sessionHandler.cardProbabilityDeck = self.getRealDeck()
+        if sessionHandler.gameHandler.cardProbabilityDeck == [] {
+            sessionHandler.gameHandler.cardProbabilityDeck = self.getRealDeck()
         }
 
-        let cardType = sessionHandler.cardProbabilityDeck.randomElement() ?? .BLUE_ONE
+        let cardType = sessionHandler.gameHandler.cardProbabilityDeck.randomElement() ?? .BLUE_ONE
 
-        sessionHandler.cardProbabilityDeck.remove(at: sessionHandler.cardProbabilityDeck.firstIndex(where: { $0 == cardType })!)
+        sessionHandler.gameHandler.cardProbabilityDeck.remove(at: sessionHandler.gameHandler.cardProbabilityDeck.firstIndex(where: { $0 == cardType })!)
 
         let card = Card(id: id, type: cardType)
 
@@ -73,6 +52,7 @@ class Card: Identifiable, Equatable, ObservableObject, Codable {
 
     }
 
+    //Get Random Deck with Cards from probability Deck
     static func getRandom(amount: Int, sessionHandler: MP_Session) -> [Card] {
         var array: [Card] = []
         let range = 0...(amount - 1)
@@ -90,6 +70,7 @@ class Card: Identifiable, Equatable, ObservableObject, Codable {
 
     }
 
+    //Create a whole new Deck with the right Uno-Card-ratio
     static func getRealDeck() -> [Cards] {
 
 

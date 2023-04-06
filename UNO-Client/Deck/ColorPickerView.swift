@@ -57,18 +57,18 @@ struct ColorPickerView: View {
     }
 
     func colorPickHandler(card: Cards) {
-        sessionHandler.sendTraffic(data: card.rawValue.data(using: .isoLatin1)!)
-
-        sessionHandler.hasPlayed = true
-        showColorPicker = false
-
-        sessionHandler.cardDeck.remove(at: sessionHandler.cardDeck.firstIndex(where: { $0 == self.card })!)
+        sessionHandler.sendTraffic(recipient: TargetNames.allDevices.rawValue, prefix: TrafficTypes.cardActionIdentifier.rawValue, packet1: CardActions.playCard.rawValue, packet2: card.rawValue)
 
         sessionHandler.gameHandler.hasDrawn = false
+        sessionHandler.gameHandler.hasPlayed = true
+        showColorPicker = false
 
-        sessionHandler.activeCard = card
+        sessionHandler.gameHandler.cardDeck.remove(at: sessionHandler.gameHandler.cardDeck.firstIndex(where: { $0 == self.card })!)
 
-        if sessionHandler.cardDeck.count == 0 {
+
+        sessionHandler.gameHandler.activeCard = card
+
+        if sessionHandler.gameHandler.cardDeck.count == 0 {
             sessionHandler.gameHandler.winHandler()
 
         }

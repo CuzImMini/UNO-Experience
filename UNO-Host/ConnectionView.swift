@@ -8,36 +8,56 @@
 import SwiftUI
 
 struct ConnectionView: View {
-
-    @EnvironmentObject var engine: MP_Session
-
+    
+    @EnvironmentObject var sessionHandler: MP_Session
+    
+    @State var deckSize: Int = 8
+    
     @State var background: Color = Color.white
     @State var textColor: Color = Color.black
-
-
+        
+    
     var body: some View {
         HStack {
             Spacer()
-
+            
             VStack {
                 Spacer()
                 Text("Willkommen zu UNO-Experience!")
-                Text("Zum Starten des Spiels müssen genau zwei Geräte verbunden sein.")
+                Text("Zum Starten des Spiels müssen mindestens zwei Geräte verbunden sein.")
                 Spacer()
-                        .frame(maxHeight: 50)
-                Text("Verbundene Geräte \(engine.connectedPeers.count)")
-                Text(String(describing: engine.connectedPeers.map(\.displayName)))
+                    .frame(maxHeight: 50)
+                Text("Verbundene Geräte \(sessionHandler.connectedPeers.count)")
+                Text(String(describing: sessionHandler.connectedPeers.map(\.displayName)))
                 Spacer().frame(maxHeight: 100)
-
-                if engine.isReady {
-                    Button("Start") {
-                        engine.gameHandler.startGame()
-
+                
+                if sessionHandler.connectedPeers.count == 2 {
+                    HStack(spacing: 20) {
+                        Spacer()
+                        Stepper("Deckgröße: \(deckSize)", value: $deckSize).frame(maxWidth: 300).onChange(of: deckSize) {size in
+                            if (size < 1) {
+                                self.deckSize = 1
+                            }
+                        }
+                        Button("Start") {
+                            sessionHandler.gameHandler.startGame(deckSize: deckSize)
+                            
+                        }
+                        .buttonStyle(.bordered)
+                        Spacer()
                     }
-                            .buttonStyle(.bordered)
                 }
-                Spacer().onChange(of: engine.isReady) { bool in
-                    if engine.isReady {
+                Spacer().onChange(of: sessionHandler.connectedPeers.count) { count in
+                    if count == 2 {
+                        background = .green
+                        textColor = .white
+                    } else {
+                        background = .white
+                        textColor = .black
+                    }
+                }
+                .onAppear() {
+                    if sessionHandler.connectedPeers.count == 2 {
                         background = .green
                         textColor = .white
                     } else {
@@ -46,15 +66,16 @@ struct ConnectionView: View {
                     }
                 }
             }
-                    .foregroundColor(textColor)
+            .foregroundColor(textColor)
             Spacer()
         }
-                .background(background)
+        .background(background)
     }
 }
 
 struct ConnectionView_Previews: PreviewProvider {
     static var previews: some View {
         ConnectionView()
+            .environmentObject(MP_Session())
     }
 }

@@ -10,109 +10,122 @@ import os
 
 
 struct ClientDeckView: View {
-
+    
     //Übergabe der Variable um auf Session- & Gamehandler zugreifen zu können
     @EnvironmentObject var sessionHandler: MP_Session
-
-    //Variable, die zeigt ob bereits eine Karte gezogen wurde
+    
     //Farbe des Skip-Buttons
     @State var skipButtonColor: Color = .red
-
-
+    //Letzte Anzahl an Karten auf der Hand
     @State var lastDeckCount: Int = 8
-
+    
     //Logger für Konsole
     let log = Logger()
-
+    
     var body: some View {
+        
         VStack {
-            Spacer()
-            Text("Hier sind \(sessionHandler.cardDeck.count) UNO Karten!").padding(20)
-
-            if sessionHandler.hasPlayed {
-                Text("Anderer Spieler am Zug")
-            } else {
-                Text("Du bist dran!")
-            }
-
-            Spacer()
-
+            //Top-Bar zur Anzeige des Spielers und der übrigen Karten
+            VStack {
+                Text("Hier sind \(sessionHandler.gameHandler.cardDeck.count) UNO Karten!")
+                
+                if sessionHandler.gameHandler.hasPlayed {
+                    Text("Anderer Spieler am Zug")
+                } else {
+                    Text("Du bist dran!")
+                }
+            }.padding(10)
+            //ScrollViewReader um die Karten scrollbar zu machen
             ScrollViewReader { scrollView in
+                //ScrollView zur Anzeige der scrollbaren UNO Karten
                 ScrollView(.horizontal) {
                     HStack() {
-                        ForEach(sessionHandler.cardDeck) { card in
-
-
+                        ForEach(sessionHandler.gameHandler.cardDeck) { card in
+                            
+                            
                             CardView(card: card, sessionHandler: sessionHandler).id(card.id)
                         }
-
+                        
                     }
-                            .frame(height: 600)
-
+                    .frame(maxHeight: 600)
+                    
                 }
-
-                        .frame(width: 390, height: 650)
-
-
-                Spacer().frame(maxHeight: 100)
+                .frame(maxWidth: 390, maxHeight: 650)
+                //Platz für die beiden Knöpfe
                 HStack(spacing: 30) {
-
                     Button("Karte ziehen") {
-                        if (sessionHandler.gameHandler.hasDrawn || sessionHandler.hasPlayed) {
+                        if (sessionHandler.gameHandler.hasDrawn || sessionHandler.gameHandler.hasPlayed) {
                             return
-                        }
-                        log.info("Karte gezogen!")
-
+                        }                        
                         //Hole neue Karte vom Wahrscheinlichkeitsstapel
                         sessionHandler.gameHandler.requestDraw(amount: 1)
-
+                        
                         sessionHandler.gameHandler.hasDrawn = true
                     }
-                            .buttonStyle(.bordered)
-                            .padding(20)
-                            .onChange(of: sessionHandler.cardDeck.count) { count in
-
-                                if lastDeckCount < count {
-                                    withAnimation(.easeInOut(duration: 250)) {
-                                        scrollView.scrollTo(sessionHandler.cardDeck.last!.id, anchor: .trailing)
-                                    }
-                                }
-                                lastDeckCount = count
-
-                                if count == 0 {
-                                    sessionHandler.gameHandler.winHandler()
-                                }
-
+                    .buttonStyle(.bordered)
+                    .padding(20)
+                    //Aktionen wenn Spielereignis eintrifft
+                    .onChange(of: sessionHandler.gameHandler.cardDeck.count) { count in
+                        //Wenn eine Karte dazu gekommen ist, scrolle zur neuen Karte
+                        if lastDeckCount < count {
+                            withAnimation(.easeInOut(duration: 400)) {
+                                scrollView.scrollTo(sessionHandler.gameHandler.cardDeck.last!.id, anchor: .trailing)
                             }
-
+                        }
+                        lastDeckCount = count
+                        
+                        if count == 0 {
+                            sessionHandler.gameHandler.winHandler()
+                        }
+                        
+                    }
+                    .onChange(of: sessionHandler.gameHandler.hasPlayed) {bool in
+                        if !bool {
+                            guard let fittingCardIndex: Int = sessionHandler.gameHandler.cardDeck.first(where: {$0.type.color == sessionHandler.gameHandler.activeCard.color || $0.type.number == sessionHandler.gameHandler.activeCard.number})?.id else {
+                                
+                                guard let fittingChooseCardIndex: Int = sessionHandler.gameHandler.cardDeck.first(where: {$0.type == Cards.CHOOSE})?.id else {return}
+                                withAnimation(.easeInOut(duration: 500)) {
+                                    scrollView.scrollTo(fittingChooseCardIndex, anchor: .center)
+                                }
+                                return
+                            }
+                                withAnimation(.easeInOut(duration: 500)) {
+                                    scrollView.scrollTo(fittingCardIndex, anchor: .center)
+                                }
+                            
+                        }
+                    }
+                    .onChange(of: sessionHandler.gameHandler.hasDrawn) { hasDrawn in
+                        
+                        if hasDrawn {
+                            skipButtonColor = .blue
+                        } else {
+                            skipButtonColor = .red
+                        }
+                    }
+                    
                     Button("Aussetzen") {
                         if sessionHandler.gameHandler.hasDrawn {
-                            sessionHandler.sendTraffic(data: GameTraffic.skip.rawValue.data(using: .isoLatin1)!)
+                            sessionHandler.sendTraffic(recipient: TargetNames.allPlayers.rawValue, prefix: TrafficTypes.cardActionIdentifier.rawValue, packet1: CardActions.requestSkip.rawValue, packet2: "")
                             sessionHandler.gameHandler.hasDrawn = false
-                            sessionHandler.hasPlayed = true
+                            sessionHandler.gameHandler.hasPlayed = true
                         }
-
+                        
                     }
-                            .buttonStyle(.bordered)
-                            .padding(20)
-                            .foregroundColor(skipButtonColor)
-                            .onChange(of: sessionHandler.gameHandler.hasDrawn) { hasDrawn in
-
-                                if hasDrawn {
-                                    skipButtonColor = .blue
-                                } else {
-                                    skipButtonColor = .red
-                                }
-                            }
-
+                    .buttonStyle(.bordered)
+                    .padding(20)
+                    .foregroundColor(skipButtonColor)
+                    
+                    
                 }
             }
-                    .background(Color(uiColor: .lightGray))
+            .background(Color(uiColor: .lightGray))
         }
-
+        
+        
     }
-
-
+    
+    
 }
 
 struct DeckView_Previews: PreviewProvider {

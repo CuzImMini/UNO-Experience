@@ -149,9 +149,9 @@
 				ECA88040297942B900DE4AC8 /* Preview Content */,
 				ECC39742297C6E880033FBD4 /* ConnectionView.swift */,
 				ECC39744297C6EDC0033FBD4 /* DeckView.swift */,
-				ECC39746297C70CF0033FBD4 /* HostSessionManager.swift */,
 				EC80B416298275B3008DF2D2 /* CardStackView.swift */,
 				EC7DE7FE14D41460117EB940 /* GameEngine.swift */,
+				ECC39746297C70CF0033FBD4 /* HostSessionManager.swift */,
 			);
 			path = "UNO-Host";
 			sourceTree = "<group>";

@@ -10,10 +10,10 @@ import SwiftUI
 struct CardStackView: View {
 
     var card: Cards
-    var rotationRadian: Double
+    var rotationDegree: Int
     let animationCard: Bool
 
-    @State var visibility: Double = 1
+    @State var scale: Double = 1
 
     var body: some View {
         VStack {
@@ -21,26 +21,26 @@ struct CardStackView: View {
             HStack {
                 Spacer()
                 Image(card.rawValue).resizable().frame(maxWidth: 350, maxHeight: 600)
-                        .rotationEffect(.radians(rotationRadian))
+                        .rotationEffect(Angle(degrees: Double(rotationDegree)))
                 Spacer()
             }
             Spacer()
         }
                 .onAppear() {
                     if animationCard {
-                        self.visibility = 1.5
+                        self.scale = 1.5
                         withAnimation(.easeInOut(duration: 0.35)) {
-                            self.visibility -= 0.5
+                            self.scale -= 0.5
                         }
                     }
                 }
-                .scaleEffect(CGFloat(visibility))
+                .scaleEffect(CGFloat(scale))
 
     }
 }
 
 struct CardStackView_Previews: PreviewProvider {
     static var previews: some View {
-        CardStackView(card: .RED_ZERO, rotationRadian: Double.random(in: 0...6.2), animationCard: true)
+        CardStackView(card: .RED_ZERO, rotationDegree: 90, animationCard: true)
     }
 }

@@ -15,7 +15,7 @@ struct MainMenu: View {
 
     var body: some View {
 
-        switch sessionHandler.viewState {
+        switch sessionHandler.gameHandler.viewState {
 
         case .mainMenu:
             ConnectionView().environmentObject(sessionHandler)
@@ -24,7 +24,7 @@ struct MainMenu: View {
             ClientDeckView().environmentObject(sessionHandler)
 
         case .loose:
-            Text("Du hast verloreeeeen")
+            Text("\(sessionHandler.gameHandler.winnerName!) hat dich besiegt!")
         case .win:
             Text("Du hast gewonnen. Respekt!")
         }
