@@ -8,11 +8,13 @@
 import Foundation
 import SwiftUI
 
-
 enum ViewStates: String {
 
-    case mainMenu = "mainmenu"
-    case inGame = "ingame"
+    case hostMainMenu = "hostmainmenu"
+    case clientMainMenu = "clientmainmenu"
+    case clientInGame = "clientingame"
+    case hostInGame = "hostingame"
+    case hostGameEnd = "hostgameend"
     case loose = "loose"
     case win = "win"
 

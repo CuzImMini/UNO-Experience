@@ -10,7 +10,7 @@ import Foundation
 import os
 import SwiftUI
 
-class MP_Session: NSObject, ObservableObject {
+class HostSessionManager: NSObject, ObservableObject {
     
     //Bonjour-Erkennungs-Zeichen
     private let serviceType = "unoexperience"
@@ -27,10 +27,11 @@ class MP_Session: NSObject, ObservableObject {
     //öffentliche Variablen
     //Liste mit allen verbundenen Geräten
     @Published var connectedPeers: [MCPeerID] = []
+    @Published var isOnline: Bool = false
     //aktuelle Ansicht auf den Geräten...
     
     //Variable um auf GameEngine zuzugreifen
-    @Published var gameHandler: GameEngine!
+    @Published var gameHandler: HostGameEngine!
     
     //initializer
     override init() {
@@ -40,28 +41,49 @@ class MP_Session: NSObject, ObservableObject {
         
         super.init()
         
-        gameHandler = GameEngine(sessionHandler: self)
+        gameHandler = HostGameEngine(sessionHandler: self)
         
         session.delegate = self
         serviceAdvertiser.delegate = self
         serviceBrowser.delegate = self
         
-        serviceAdvertiser.startAdvertisingPeer()
-        serviceBrowser.startBrowsingForPeers()
-        
-        
+        log.debug("HostSessionManager initialisiert")
     }
     
     deinit {
         serviceAdvertiser.stopAdvertisingPeer()
         serviceBrowser.stopBrowsingForPeers()
+        
+        isOnline = false
+        
+        log.debug("HostSessionManager deinitialisiert")
+
+    }
+    
+    func goOnline() {
+        log.debug("Gehe online")
+
+        serviceAdvertiser.startAdvertisingPeer()
+        serviceBrowser.startBrowsingForPeers()
+        
+        isOnline = true
+    }
+    
+    func goOffline() {
+        log.debug("Gehe offline")
+        serviceAdvertiser.stopAdvertisingPeer()
+        serviceBrowser.stopBrowsingForPeers()
+        
+        session.disconnect()
+        
+        isOnline = false
     }
     
     //Jeder gesendete Traffic läuft hierüber
     func sendTraffic(recipient: String, prefix: String, packet1: String, packet2: String) {
         
-        print(("Daten \(recipient + "#" + prefix + "#" + packet1 + "#" + packet2) gesendet"))
-        
+        log.debug("Sende Daten: \(recipient + "#" + prefix + "#" + packet1 + "#" + packet2)")
+
         let data = String(recipient + "#" + prefix + "#" + packet1 + "#" + packet2).data(using: .isoLatin1)!
         
         var recipientPeerIDs = session.connectedPeers
@@ -82,8 +104,8 @@ class MP_Session: NSObject, ObservableObject {
     func trafficHandler(data: Data, peerID: MCPeerID) {
         DispatchQueue.main.async {
             //Logging
-            self.log.info("Datenpaket: \(String(data: data, encoding: .isoLatin1)!) empfangen.")
-            
+            self.log.debug("Datenpaket: \(String(data: data, encoding: .isoLatin1)!) empfangen.")
+
             //Aufbau beim Aussenden: Neues GameTraffic System mit Prefix und Daten
             //[0] steht für den Namen des Empfängers (all bei an alle)
             //[1] steht für das Prefix
@@ -107,13 +129,16 @@ class MP_Session: NSObject, ObservableObject {
             switch decodedDataArray[2] {
                 
             case TrafficTypes.gameActionIdentifier.rawValue:
-                
+                self.log.debug("GameAction Paket empfangen")
+
                 switch decodedDataArray[3] {
                     
                 case GameActions.win.rawValue:
+                    self.log.debug("Win-Empfangen. Starte EndGameHandler")
                     self.gameHandler.endGameHandler(winnerName: decodedDataArray[0])
                 case GameActions.stopGame.rawValue:
-                    self.gameHandler.endGameHandler(winnerName: "")
+                    self.log.debug("Stopp empfangen. Breche Spiel ab.")
+                    self.gameHandler.cancelGame(selfInitiated: false)
                     
                 default:
                     self.log.error("Fehler bei der Übertragung eines GameAction Packetes")
@@ -121,14 +146,18 @@ class MP_Session: NSObject, ObservableObject {
                 }
                 
             case TrafficTypes.cardActionIdentifier.rawValue:
-                
+                self.log.debug("CardAction Paket empfangen")
+
                 switch decodedDataArray[3] {
                     
                 case CardActions.playCard.rawValue:
+                    self.log.debug("Karte gespielt. Wechsle Karte")
                     self.gameHandler.changeCard(cardRawValue: decodedDataArray[4])
                 case CardActions.requestCard.rawValue:
+                    self.log.debug("Karte angefragt. Suche Karte von Stapel.")
                     self.gameHandler.drawHandler(recipient: decodedDataArray[0], amount: Int(decodedDataArray[4])!)
                 case CardActions.requestSkip.rawValue:
+                    self.log.debug("Spieler hat ausgesetzt. Fahre fort...")
                     self.gameHandler.playerSequenceHandler()
                 default:
                     self.log.error("Fehler bei der Übertragung eines CardAction Packetes")
@@ -151,12 +180,16 @@ class MP_Session: NSObject, ObservableObject {
     func stopConnectionMode() {
         self.serviceBrowser.stopBrowsingForPeers()
         self.serviceAdvertiser.stopAdvertisingPeer()
+        
+        self.isOnline = false
+        
+        log.debug("Stoppe den Verbindungsmodus")
     }
     
 }
 
 //Nötiger Code von Vererbungen des ServiceAdvertisers
-extension MP_Session: MCNearbyServiceAdvertiserDelegate {
+extension HostSessionManager: MCNearbyServiceAdvertiserDelegate {
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error) {
         log.error("ServiceAdvertiser didNotStartAdvertisingPeer: \(String(describing: error))")
     }
@@ -169,7 +202,7 @@ extension MP_Session: MCNearbyServiceAdvertiserDelegate {
 }
 
 //automatisches Senden von Einladungen
-extension MP_Session: MCNearbyServiceBrowserDelegate {
+extension HostSessionManager: MCNearbyServiceBrowserDelegate {
     func browser(_ browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: Error) {
         log.error("ServiceBrowser didNotStartBrowsingForPeers: \(String(describing: error))")
     }
@@ -188,7 +221,7 @@ extension MP_Session: MCNearbyServiceBrowserDelegate {
 }
 
 //Ausführung wenn sich der Status eines Gerätes im Netz geändert hat
-extension MP_Session: MCSessionDelegate {
+extension HostSessionManager: MCSessionDelegate {
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         log.info("peer \(peerID) didChangeState: \(state.rawValue)")
         

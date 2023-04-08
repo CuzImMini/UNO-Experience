@@ -9,7 +9,7 @@ import MultipeerConnectivity
 import Foundation
 import os
 
-class MP_Session: NSObject, ObservableObject {
+class ClientSessionManager: NSObject, ObservableObject {
     //Logger für Konsole
     private let log = Logger()
     
@@ -25,10 +25,11 @@ class MP_Session: NSObject, ObservableObject {
     
     //Liste mit allen verbundenen Geräten
     @Published var connectedPeers: [MCPeerID] = []
+    @Published var isOnline: Bool = false
     
     //Variable um auf GameEngine zuzugreifen
-    @Published var gameHandler: GameEngine!
-    
+    @Published var gameHandler: ClientGameEngine!
+
     //Decoder
     let decoder = JSONDecoder()
     
@@ -38,19 +39,25 @@ class MP_Session: NSObject, ObservableObject {
         //Initialisierung Vererbungen
         super.init()
         
-        gameHandler = GameEngine(sessionHandler: self)
+        log.debug("ClientSessionManager initialisiert")
+        gameHandler = ClientGameEngine(sessionHandler: self)
     }
     
     //Deaktiviert Bonjour-Dienste wenn App geschlossen wird
     deinit {
+        log.debug("ClientSessionManager deinitialisiert")
+
         serviceBrowser?.stopBrowsingForPeers()
         serviceAdvertiser?.stopAdvertisingPeer()
+        
+        isOnline = false
     }
     
     //Jeder gesendete Traffic läuft hierüber
     func sendTraffic(recipient: String, prefix: String, packet1: String, packet2: String) {
         
-        print(("Daten \(recipient + "#" + prefix + "#" + packet1 + "#" + packet2) gesendet"))
+        log.debug("Sende Daten: \(recipient + "#" + prefix + "#" + packet1 + "#" + packet2)")
+        
         let data = String(recipient + "#" + prefix + "#" + packet1 + "#" + packet2).data(using: .isoLatin1)!
         
         var recipientPeerIDs = session?.connectedPeers ?? []
@@ -71,6 +78,7 @@ class MP_Session: NSObject, ObservableObject {
     
     //Starten der Bonjour-Dienste
     func goOnline(username: String) {
+
         myPeerId = MCPeerID(displayName: username)
         
         session = MCSession(peer: myPeerId, securityIdentity: nil, encryptionPreference: .none)
@@ -85,13 +93,36 @@ class MP_Session: NSObject, ObservableObject {
         
         serviceBrowser?.startBrowsingForPeers()
         serviceAdvertiser?.startAdvertisingPeer()
+        
+        isOnline = true
+        
+        log.debug("Gehe Online")
+    }
+    
+    func goOffline() {
+        log.debug("Gehe Offline")
+        
+        serviceAdvertiser?.stopAdvertisingPeer()
+        serviceBrowser?.stopBrowsingForPeers()
+        
+        session?.disconnect()
+        
+        isOnline = false
+    }
+    
+    func stopConnectionMode() {
+        log.debug("Stoppe den Verbindungsmodus für neue Geräte/Sessions")
+        serviceBrowser?.stopBrowsingForPeers()
+        serviceAdvertiser?.stopAdvertisingPeer()
+        
+        isOnline = false
     }
     
     //Der gesamte Datenverkehr läuft über diese Funktion
     func trafficHandler(data: Data, peerID: MCPeerID) {
         DispatchQueue.main.async {
             //Logging
-            self.log.info("Datenpaket: \(String(data: data, encoding: .isoLatin1)!) empfangen.")
+            self.log.debug("Datenpaket: \(String(data: data, encoding: .isoLatin1)!) empfangen.")
             
             //Aufbau beim Aussenden: Neues GameTraffic System mit Prefix und Daten
             //[0] steht für den Namen des Empfängers (all bei an alle)
@@ -117,16 +148,20 @@ class MP_Session: NSObject, ObservableObject {
             
             //"wenn GameTraffic"
             case TrafficTypes.gameActionIdentifier.rawValue:
-                
+                self.log.debug("GameAction Paket empfangen")
                 switch decodedDataArray[3] {
                     
                 case GameActions.win.rawValue:
+                    self.log.debug("Win-empfangen. Starte Loose-Handler")
                     self.gameHandler.looseHandler(opponentName: decodedDataArray[0])
                 case GameActions.stopGame.rawValue:
-                    self.gameHandler.cancelGame()
+                    self.log.debug("Stopp-empfangen. Breche Spiel ab")
+                    self.gameHandler.cancelGame(selfInitiated: false)
                 case GameActions.startGame.rawValue:
+                    self.log.debug("Start-empfangen. Starte Spiel")
                     self.gameHandler.startGame()
                 case GameActions.announceActivePlayer.rawValue:
+                    self.log.debug("Spieler Ankündigung. Localhost ist am  Zug")
                     self.gameHandler.playerAnnouncement()
                 default:
                     self.log.error("Fehler bei der Übertragung eines GameAction Packetes")
@@ -134,17 +169,21 @@ class MP_Session: NSObject, ObservableObject {
                 
             case TrafficTypes.cardActionIdentifier.rawValue:
                 
+                self.log.debug("CardAction Paket empfangen")
                 switch decodedDataArray[3] {
                     
                 case CardActions.announceCard.rawValue:
-                    self.gameHandler.changeCard(cardRawValue: decodedDataArray[4], announce: true)
+                    self.log.debug("Neue Karte angekündigt")
+                    self.gameHandler.changeCard(cardRawValue: decodedDataArray[4])
                 case CardActions.playCard.rawValue:
-                    self.gameHandler.changeCard(cardRawValue: decodedDataArray[4], announce: false)
+                    self.log.debug("Neue Karte ausgespielt")
+                    self.gameHandler.changeCard(cardRawValue: decodedDataArray[4])
                 case CardActions.announceDeck.rawValue:
+                    self.log.debug("Kartendeck vom Host erhalten")
                     self.gameHandler.cardDeck = self.decodeCards(type: [Card].self, cardData: decodedDataArray[4]) as! [Card]
                     self.gameHandler.lastDeckCount = self.gameHandler.cardDeck.count
-                    self.gameHandler.hasPlayed = true
                 case CardActions.drawnCardFromHost.rawValue:
+                    self.log.debug("Karte vom Host erhalten")
                     let card: Card = self.decodeCards(type: Card.self, cardData: decodedDataArray[4]) as! Card
                     self.gameHandler.cardDeck.append(Card(id: self.gameHandler.cardDeck.last!.id + 1, type: card.type))
                     
@@ -165,10 +204,10 @@ class MP_Session: NSObject, ObservableObject {
     }
     
     func decodeCards(type: any Codable.Type, cardData: String) -> any Codable {
-        
+        log.debug("Dekodiere Karte/n")
         var decodedCards: (any Codable)?
         do {
-            print(cardData)
+            log.info("Karte/n erfolgreich dekodiert")
             decodedCards = try self.decoder.decode(type.self, from: cardData.data(using: .isoLatin1)!)
         }
         catch {self.log.error("Fehler bei Dekodierung von Karten oder Kartendecks")}
@@ -180,7 +219,7 @@ class MP_Session: NSObject, ObservableObject {
 }
 
 //automatisches Annehmen von Einladungen und Beenden der Suche für weitere Clients
-extension MP_Session: MCNearbyServiceAdvertiserDelegate {
+extension ClientSessionManager: MCNearbyServiceAdvertiserDelegate {
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error) {
         log.error("ServiceAdvertiser didNotStartAdvertisingPeer: \(String(describing: error))")
     }
@@ -194,7 +233,7 @@ extension MP_Session: MCNearbyServiceAdvertiserDelegate {
     
 }
 
-extension MP_Session: MCNearbyServiceBrowserDelegate {
+extension ClientSessionManager: MCNearbyServiceBrowserDelegate {
     func browser(_ browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: Error) {
         log.error("ServiceBrowser didNotStartBrowsingForPeers: \(String(describing: error))")
     }
@@ -212,7 +251,7 @@ extension MP_Session: MCNearbyServiceBrowserDelegate {
 }
 
 //Ausführung wenn sich der Status eines Gerätes im Netz geändert hat
-extension MP_Session: MCSessionDelegate {
+extension ClientSessionManager: MCSessionDelegate {
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         log.info("peer \(peerID) didChangeState: \(state.rawValue)")
         DispatchQueue.main.async {

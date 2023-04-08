@@ -7,57 +7,50 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EC59AF7D2994FC98003A8D9B /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC59AF7C2994FC97003A8D9B /* Card.swift */; };
-		EC7DE203A78CF3750C534F08 /* GameEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DE912E48E3BE3D12CFDDB /* GameEnums.swift */; };
-		EC7DE2BAEFB960DDD4767C14 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DED2387156D3578A14DEE /* Card.swift */; };
+		EC24846E29E0127F003CE6F0 /* TopMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24846D29E0127F003CE6F0 /* TopMenu.swift */; };
+		EC24847029E01F72003CE6F0 /* ClientConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24846F29E01F72003CE6F0 /* ClientConnectionView.swift */; };
+		EC24847229E02012003CE6F0 /* HostConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24847129E02012003CE6F0 /* HostConnectionView.swift */; };
+		EC24847629E025CF003CE6F0 /* HostSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24847529E025CF003CE6F0 /* HostSessionManager.swift */; };
+		EC24847929E0264B003CE6F0 /* HostGameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24847829E0264B003CE6F0 /* HostGameEngine.swift */; };
+		EC24847B29E02F88003CE6F0 /* CardObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24847A29E02F88003CE6F0 /* CardObject.swift */; };
+		EC24847F29E03018003CE6F0 /* HostDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24847E29E03018003CE6F0 /* HostDeckView.swift */; };
+		EC24848129E03025003CE6F0 /* HostCardStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24848029E03025003CE6F0 /* HostCardStackView.swift */; };
+		EC24848329E044EC003CE6F0 /* ClientGameEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24848229E044EC003CE6F0 /* ClientGameEndView.swift */; };
+		EC24848529E044F6003CE6F0 /* HostGameEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24848429E044F6003CE6F0 /* HostGameEndView.swift */; };
+		EC35617F29E09CFD00EDF858 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECA880592979435000DE4AC8 /* Assets.xcassets */; };
 		EC7DE364FC4EA7E49DDD0A9E /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DEFF665DF2D67D9A81962 /* ColorPickerView.swift */; };
 		EC7DE72BFBCB793209B015B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DE3D31E482D58C7534A5F /* AppDelegate.swift */; };
-		EC7DE8A56D3FBFD79169B080 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DE7FE14D41460117EB940 /* GameEngine.swift */; };
 		EC7DE9172047A59A4751128F /* GameEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DE912E48E3BE3D12CFDDB /* GameEnums.swift */; };
-		EC7DECAB8CF7F1ECF3D4254C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DE3D31E482D58C7534A5F /* AppDelegate.swift */; };
 		EC7DEE1482E94961A60E9228 /* ClientDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DEBA87B0B142D72AF638A /* ClientDeckView.swift */; };
-		EC7DEE61DD55FA822EECDF9A /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DE2165EB9724E33C43972 /* GameEngine.swift */; };
-		EC7DEF34D758A2C5435567B4 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DEB900A250B4F6798E50E /* CardView.swift */; };
-		EC80B417298275B3008DF2D2 /* CardStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC80B416298275B3008DF2D2 /* CardStackView.swift */; };
-		ECA880292979428A00DE4AC8 /* UNO_ClientApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA880282979428A00DE4AC8 /* UNO_ClientApp.swift */; };
+		EC7DEE61DD55FA822EECDF9A /* ClientGameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DE2165EB9724E33C43972 /* ClientGameEngine.swift */; };
+		EC7DEF34D758A2C5435567B4 /* ClientCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7DEB900A250B4F6798E50E /* ClientCardView.swift */; };
+		ECA880292979428A00DE4AC8 /* UNO_ExperienceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA880282979428A00DE4AC8 /* UNO_ExperienceApp.swift */; };
 		ECA880302979428B00DE4AC8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECA8802F2979428B00DE4AC8 /* Preview Assets.xcassets */; };
-		ECA8803B297942B800DE4AC8 /* UNO_HostApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8803A297942B800DE4AC8 /* UNO_HostApp.swift */; };
-		ECA8803D297942B800DE4AC8 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8803C297942B800DE4AC8 /* MainMenu.swift */; };
-		ECA88042297942B900DE4AC8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECA88041297942B900DE4AC8 /* Preview Assets.xcassets */; };
-		ECA8805A2979435000DE4AC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECA880592979435000DE4AC8 /* Assets.xcassets */; };
-		ECA8805B2979435000DE4AC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECA880592979435000DE4AC8 /* Assets.xcassets */; };
-		ECA88069297951BD00DE4AC8 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA88068297951BD00DE4AC8 /* MainMenu.swift */; };
-		ECC3973C297C51A70033FBD4 /* ConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC3973B297C51A70033FBD4 /* ConnectionView.swift */; };
-		ECC39743297C6E880033FBD4 /* ConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC39742297C6E880033FBD4 /* ConnectionView.swift */; };
-		ECC39745297C6EDC0033FBD4 /* DeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC39744297C6EDC0033FBD4 /* DeckView.swift */; };
-		ECC39747297C70CF0033FBD4 /* HostSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC39746297C70CF0033FBD4 /* HostSessionManager.swift */; };
 		ECC39749297C71080033FBD4 /* ClientSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC39748297C71080033FBD4 /* ClientSessionManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EC59AF7C2994FC97003A8D9B /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		EC7DE2165EB9724E33C43972 /* GameEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
+		EC24846D29E0127F003CE6F0 /* TopMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMenu.swift; sourceTree = "<group>"; };
+		EC24846F29E01F72003CE6F0 /* ClientConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientConnectionView.swift; sourceTree = "<group>"; };
+		EC24847129E02012003CE6F0 /* HostConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostConnectionView.swift; sourceTree = "<group>"; };
+		EC24847529E025CF003CE6F0 /* HostSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostSessionManager.swift; sourceTree = "<group>"; };
+		EC24847829E0264B003CE6F0 /* HostGameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostGameEngine.swift; sourceTree = "<group>"; };
+		EC24847A29E02F88003CE6F0 /* CardObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardObject.swift; sourceTree = "<group>"; };
+		EC24847E29E03018003CE6F0 /* HostDeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostDeckView.swift; sourceTree = "<group>"; };
+		EC24848029E03025003CE6F0 /* HostCardStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostCardStackView.swift; sourceTree = "<group>"; };
+		EC24848229E044EC003CE6F0 /* ClientGameEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientGameEndView.swift; sourceTree = "<group>"; };
+		EC24848429E044F6003CE6F0 /* HostGameEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostGameEndView.swift; sourceTree = "<group>"; };
+		EC35616629E09B8F00EDF858 /* UNO_Cards.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UNO_Cards.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC7DE2165EB9724E33C43972 /* ClientGameEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientGameEngine.swift; sourceTree = "<group>"; };
 		EC7DE3D31E482D58C7534A5F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EC7DE7FE14D41460117EB940 /* GameEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
 		EC7DE912E48E3BE3D12CFDDB /* GameEnums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEnums.swift; sourceTree = "<group>"; };
-		EC7DEB900A250B4F6798E50E /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		EC7DEB900A250B4F6798E50E /* ClientCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientCardView.swift; sourceTree = "<group>"; };
 		EC7DEBA87B0B142D72AF638A /* ClientDeckView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientDeckView.swift; sourceTree = "<group>"; };
-		EC7DED2387156D3578A14DEE /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		EC7DEFF665DF2D67D9A81962 /* ColorPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
-		EC80B416298275B3008DF2D2 /* CardStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStackView.swift; sourceTree = "<group>"; };
-		ECA880262979428A00DE4AC8 /* UNO-Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UNO-Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		ECA880282979428A00DE4AC8 /* UNO_ClientApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNO_ClientApp.swift; sourceTree = "<group>"; };
+		ECA880262979428A00DE4AC8 /* UNO-Experience.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UNO-Experience.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECA880282979428A00DE4AC8 /* UNO_ExperienceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNO_ExperienceApp.swift; sourceTree = "<group>"; };
 		ECA8802F2979428B00DE4AC8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		ECA88038297942B800DE4AC8 /* UNO-Host.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UNO-Host.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		ECA8803A297942B800DE4AC8 /* UNO_HostApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNO_HostApp.swift; sourceTree = "<group>"; };
-		ECA8803C297942B800DE4AC8 /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
-		ECA88041297942B900DE4AC8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		ECA880592979435000DE4AC8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		ECA88068297951BD00DE4AC8 /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
-		ECC3973B297C51A70033FBD4 /* ConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionView.swift; sourceTree = "<group>"; };
-		ECC39742297C6E880033FBD4 /* ConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionView.swift; sourceTree = "<group>"; };
-		ECC39744297C6EDC0033FBD4 /* DeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckView.swift; sourceTree = "<group>"; };
-		ECC39746297C70CF0033FBD4 /* HostSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostSessionManager.swift; sourceTree = "<group>"; };
 		ECC39748297C71080033FBD4 /* ClientSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSessionManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,16 +62,56 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ECA88035297942B800DE4AC8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC24847329E02063003CE6F0 /* Menus */ = {
+			isa = PBXGroup;
+			children = (
+				EC24846F29E01F72003CE6F0 /* ClientConnectionView.swift */,
+				EC24846D29E0127F003CE6F0 /* TopMenu.swift */,
+				EC24847129E02012003CE6F0 /* HostConnectionView.swift */,
+				EC24848229E044EC003CE6F0 /* ClientGameEndView.swift */,
+				EC24848429E044F6003CE6F0 /* HostGameEndView.swift */,
+			);
+			path = Menus;
+			sourceTree = "<group>";
+		};
+		EC24847429E025BE003CE6F0 /* SessionManagers */ = {
+			isa = PBXGroup;
+			children = (
+				ECC39748297C71080033FBD4 /* ClientSessionManager.swift */,
+				EC24847529E025CF003CE6F0 /* HostSessionManager.swift */,
+			);
+			path = SessionManagers;
+			sourceTree = "<group>";
+		};
+		EC24847729E0263B003CE6F0 /* GameEngines */ = {
+			isa = PBXGroup;
+			children = (
+				EC7DE2165EB9724E33C43972 /* ClientGameEngine.swift */,
+				EC24847829E0264B003CE6F0 /* HostGameEngine.swift */,
+			);
+			path = GameEngines;
+			sourceTree = "<group>";
+		};
+		EC24847D29E02FE3003CE6F0 /* HostDeckView */ = {
+			isa = PBXGroup;
+			children = (
+				EC24847E29E03018003CE6F0 /* HostDeckView.swift */,
+				EC24848029E03025003CE6F0 /* HostCardStackView.swift */,
+			);
+			path = HostDeckView;
+			sourceTree = "<group>";
+		};
+		EC35616529E09B8F00EDF858 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EC35616629E09B8F00EDF858 /* UNO_Cards.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EC7DE75C891C88829E2B04F8 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -88,48 +121,46 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		EC7DEE4814EBA70B868734E6 /* Deck */ = {
+		EC7DEE4814EBA70B868734E6 /* ClientDeckView */ = {
 			isa = PBXGroup;
 			children = (
 				EC7DEBA87B0B142D72AF638A /* ClientDeckView.swift */,
-				EC7DEB900A250B4F6798E50E /* CardView.swift */,
+				EC7DEB900A250B4F6798E50E /* ClientCardView.swift */,
 				EC7DEFF665DF2D67D9A81962 /* ColorPickerView.swift */,
 			);
-			path = Deck;
+			path = ClientDeckView;
 			sourceTree = "<group>";
 		};
 		ECA88006297941E700DE4AC8 = {
 			isa = PBXGroup;
 			children = (
 				ECA880582979433E00DE4AC8 /* Shared */,
-				ECA880272979428A00DE4AC8 /* UNO-Client */,
-				ECA88039297942B800DE4AC8 /* UNO-Host */,
+				ECA880272979428A00DE4AC8 /* UNO-Experience */,
 				ECA88010297941E700DE4AC8 /* Products */,
+				EC35616529E09B8F00EDF858 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		ECA88010297941E700DE4AC8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				ECA880262979428A00DE4AC8 /* UNO-Client.app */,
-				ECA88038297942B800DE4AC8 /* UNO-Host.app */,
+				ECA880262979428A00DE4AC8 /* UNO-Experience.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		ECA880272979428A00DE4AC8 /* UNO-Client */ = {
+		ECA880272979428A00DE4AC8 /* UNO-Experience */ = {
 			isa = PBXGroup;
 			children = (
-				ECA880282979428A00DE4AC8 /* UNO_ClientApp.swift */,
+				ECA880282979428A00DE4AC8 /* UNO_ExperienceApp.swift */,
+				EC24847729E0263B003CE6F0 /* GameEngines */,
+				EC24847429E025BE003CE6F0 /* SessionManagers */,
+				EC24847D29E02FE3003CE6F0 /* HostDeckView */,
+				EC7DEE4814EBA70B868734E6 /* ClientDeckView */,
+				EC24847329E02063003CE6F0 /* Menus */,
 				ECA8802E2979428B00DE4AC8 /* Preview Content */,
-				ECA88068297951BD00DE4AC8 /* MainMenu.swift */,
-				ECC3973B297C51A70033FBD4 /* ConnectionView.swift */,
-				ECC39748297C71080033FBD4 /* ClientSessionManager.swift */,
-				EC7DE2165EB9724E33C43972 /* GameEngine.swift */,
-				EC7DEE4814EBA70B868734E6 /* Deck */,
-				EC59AF7C2994FC97003A8D9B /* Card.swift */,
 			);
-			path = "UNO-Client";
+			path = "UNO-Experience";
 			sourceTree = "<group>";
 		};
 		ECA8802E2979428B00DE4AC8 /* Preview Content */ = {
@@ -140,35 +171,12 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		ECA88039297942B800DE4AC8 /* UNO-Host */ = {
-			isa = PBXGroup;
-			children = (
-				EC7DED2387156D3578A14DEE /* Card.swift */,
-				ECA8803A297942B800DE4AC8 /* UNO_HostApp.swift */,
-				ECA8803C297942B800DE4AC8 /* MainMenu.swift */,
-				ECA88040297942B900DE4AC8 /* Preview Content */,
-				ECC39742297C6E880033FBD4 /* ConnectionView.swift */,
-				ECC39744297C6EDC0033FBD4 /* DeckView.swift */,
-				EC80B416298275B3008DF2D2 /* CardStackView.swift */,
-				EC7DE7FE14D41460117EB940 /* GameEngine.swift */,
-				ECC39746297C70CF0033FBD4 /* HostSessionManager.swift */,
-			);
-			path = "UNO-Host";
-			sourceTree = "<group>";
-		};
-		ECA88040297942B900DE4AC8 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				ECA88041297942B900DE4AC8 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
 		ECA880582979433E00DE4AC8 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
 				ECA880592979435000DE4AC8 /* Assets.xcassets */,
 				EC7DE75C891C88829E2B04F8 /* Utils */,
+				EC24847A29E02F88003CE6F0 /* CardObject.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -176,9 +184,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		ECA880252979428A00DE4AC8 /* UNO-Client */ = {
+		ECA880252979428A00DE4AC8 /* UNO-Experience */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ECA880312979428B00DE4AC8 /* Build configuration list for PBXNativeTarget "UNO-Client" */;
+			buildConfigurationList = ECA880312979428B00DE4AC8 /* Build configuration list for PBXNativeTarget "UNO-Experience" */;
 			buildPhases = (
 				ECA880222979428A00DE4AC8 /* Sources */,
 				ECA880232979428A00DE4AC8 /* Frameworks */,
@@ -188,26 +196,9 @@
 			);
 			dependencies = (
 			);
-			name = "UNO-Client";
+			name = "UNO-Experience";
 			productName = "UNO-Client";
-			productReference = ECA880262979428A00DE4AC8 /* UNO-Client.app */;
-			productType = "com.apple.product-type.application";
-		};
-		ECA88037297942B800DE4AC8 /* UNO-Host */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = ECA88043297942B900DE4AC8 /* Build configuration list for PBXNativeTarget "UNO-Host" */;
-			buildPhases = (
-				ECA88034297942B800DE4AC8 /* Sources */,
-				ECA88035297942B800DE4AC8 /* Frameworks */,
-				ECA88036297942B800DE4AC8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "UNO-Host";
-			productName = "UNO-Host";
-			productReference = ECA88038297942B800DE4AC8 /* UNO-Host.app */;
+			productReference = ECA880262979428A00DE4AC8 /* UNO-Experience.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -221,9 +212,6 @@
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					ECA880252979428A00DE4AC8 = {
-						CreatedOnToolsVersion = 14.2;
-					};
-					ECA88037297942B800DE4AC8 = {
 						CreatedOnToolsVersion = 14.2;
 					};
 				};
@@ -241,8 +229,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				ECA880252979428A00DE4AC8 /* UNO-Client */,
-				ECA88037297942B800DE4AC8 /* UNO-Host */,
+				ECA880252979428A00DE4AC8 /* UNO-Experience */,
 			);
 		};
 /* End PBXProject section */
@@ -252,17 +239,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC35617F29E09CFD00EDF858 /* Assets.xcassets in Resources */,
 				ECA880302979428B00DE4AC8 /* Preview Assets.xcassets in Resources */,
-				ECA8805A2979435000DE4AC8 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ECA88036297942B800DE4AC8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				ECA88042297942B900DE4AC8 /* Preview Assets.xcassets in Resources */,
-				ECA8805B2979435000DE4AC8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,34 +251,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECA88069297951BD00DE4AC8 /* MainMenu.swift in Sources */,
-				ECC3973C297C51A70033FBD4 /* ConnectionView.swift in Sources */,
+				EC24847F29E03018003CE6F0 /* HostDeckView.swift in Sources */,
+				EC24848129E03025003CE6F0 /* HostCardStackView.swift in Sources */,
 				ECC39749297C71080033FBD4 /* ClientSessionManager.swift in Sources */,
-				ECA880292979428A00DE4AC8 /* UNO_ClientApp.swift in Sources */,
+				ECA880292979428A00DE4AC8 /* UNO_ExperienceApp.swift in Sources */,
+				EC24848529E044F6003CE6F0 /* HostGameEndView.swift in Sources */,
+				EC24846E29E0127F003CE6F0 /* TopMenu.swift in Sources */,
+				EC24848329E044EC003CE6F0 /* ClientGameEndView.swift in Sources */,
 				EC7DE9172047A59A4751128F /* GameEnums.swift in Sources */,
+				EC24847B29E02F88003CE6F0 /* CardObject.swift in Sources */,
 				EC7DE72BFBCB793209B015B0 /* AppDelegate.swift in Sources */,
-				EC59AF7D2994FC98003A8D9B /* Card.swift in Sources */,
-				EC7DEE61DD55FA822EECDF9A /* GameEngine.swift in Sources */,
+				EC24847029E01F72003CE6F0 /* ClientConnectionView.swift in Sources */,
+				EC24847629E025CF003CE6F0 /* HostSessionManager.swift in Sources */,
+				EC7DEE61DD55FA822EECDF9A /* ClientGameEngine.swift in Sources */,
 				EC7DE364FC4EA7E49DDD0A9E /* ColorPickerView.swift in Sources */,
-				EC7DEF34D758A2C5435567B4 /* CardView.swift in Sources */,
+				EC7DEF34D758A2C5435567B4 /* ClientCardView.swift in Sources */,
+				EC24847929E0264B003CE6F0 /* HostGameEngine.swift in Sources */,
+				EC24847229E02012003CE6F0 /* HostConnectionView.swift in Sources */,
 				EC7DEE1482E94961A60E9228 /* ClientDeckView.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ECA88034297942B800DE4AC8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EC80B417298275B3008DF2D2 /* CardStackView.swift in Sources */,
-				ECA8803D297942B800DE4AC8 /* MainMenu.swift in Sources */,
-				ECC39747297C70CF0033FBD4 /* HostSessionManager.swift in Sources */,
-				ECC39745297C6EDC0033FBD4 /* DeckView.swift in Sources */,
-				ECC39743297C6E880033FBD4 /* ConnectionView.swift in Sources */,
-				ECA8803B297942B800DE4AC8 /* UNO_HostApp.swift in Sources */,
-				EC7DE203A78CF3750C534F08 /* GameEnums.swift in Sources */,
-				EC7DECAB8CF7F1ECF3D4254C /* AppDelegate.swift in Sources */,
-				EC7DE2BAEFB960DDD4767C14 /* Card.swift in Sources */,
-				EC7DE8A56D3FBFD79169B080 /* GameEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,13 +398,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"UNO-Client/Preview Content\"";
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = X2TH88GCYU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "UNO-Client/Info.plist";
+				INFOPLIST_FILE = "UNO-Experience/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "UNO Experience";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Lokales Netzwerk wäre Babamäßig";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -447,12 +417,15 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 2.0;
+				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.paulcornelissen.UNO-Experience";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -464,13 +437,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"UNO-Client/Preview Content\"";
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = X2TH88GCYU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "UNO-Client/Info.plist";
+				INFOPLIST_FILE = "UNO-Experience/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "UNO Experience";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Lokales Netzwerk wäre Babamäßig";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -481,83 +456,18 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 2.0;
+				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.paulcornelissen.UNO-Experience";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		ECA88044297942B900DE4AC8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"UNO-Host/Preview Content\"";
-				DEVELOPMENT_TEAM = X2TH88GCYU;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "UNO-Host/Info.plist";
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
-				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Lokales Netzwerk wäre Babamäßig";
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "de.paulcornelissen.UNO-Experience";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
-			};
-			name = Debug;
-		};
-		ECA88045297942B900DE4AC8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"UNO-Host/Preview Content\"";
-				DEVELOPMENT_TEAM = X2TH88GCYU;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "UNO-Host/Info.plist";
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
-				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Lokales Netzwerk wäre Babamäßig";
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "de.paulcornelissen.UNO-Experience";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
@@ -573,20 +483,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		ECA880312979428B00DE4AC8 /* Build configuration list for PBXNativeTarget "UNO-Client" */ = {
+		ECA880312979428B00DE4AC8 /* Build configuration list for PBXNativeTarget "UNO-Experience" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				ECA880322979428B00DE4AC8 /* Debug */,
 				ECA880332979428B00DE4AC8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		ECA88043297942B900DE4AC8 /* Build configuration list for PBXNativeTarget "UNO-Host" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				ECA88044297942B900DE4AC8 /* Debug */,
-				ECA88045297942B900DE4AC8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

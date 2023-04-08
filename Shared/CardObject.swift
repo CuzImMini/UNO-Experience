@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 class Card: Identifiable, Equatable, ObservableObject, Codable {
 
@@ -36,7 +35,7 @@ class Card: Identifiable, Equatable, ObservableObject, Codable {
 
 
     //Get Random card with id from Probability-Deck
-    static func getRandom(id: Int, sessionHandler: MP_Session) -> Card {
+    static func getRandom(id: Int, sessionHandler: HostSessionManager) -> Card {
 
         if sessionHandler.gameHandler.cardProbabilityDeck == [] {
             sessionHandler.gameHandler.cardProbabilityDeck = self.getRealDeck()
@@ -51,9 +50,10 @@ class Card: Identifiable, Equatable, ObservableObject, Codable {
         return card
 
     }
+    
 
     //Get Random Deck with Cards from probability Deck
-    static func getRandom(amount: Int, sessionHandler: MP_Session) -> [Card] {
+    static func getRandom(amount: Int, sessionHandler: HostSessionManager) -> [Card] {
         var array: [Card] = []
         let range = 0...(amount - 1)
 

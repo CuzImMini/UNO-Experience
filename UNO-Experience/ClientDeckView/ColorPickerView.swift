@@ -7,7 +7,7 @@ import SwiftUI
 
 struct ColorPickerView: View {
 
-    @EnvironmentObject var sessionHandler: MP_Session
+    @EnvironmentObject var sessionHandler: ClientSessionManager
     @Binding var showColorPicker: Bool
 
     var card: Card
@@ -15,9 +15,11 @@ struct ColorPickerView: View {
     var body: some View {
 
         VStack(spacing: 50) {
-            Text("Wähle eine Farbe").padding(.vertical, 100).font(.system(size: 20))
+            Text("Wähle eine Farbe:").padding(.vertical, 100).font(.system(size: 20)).underline().foregroundColor(.white)
             Spacer().frame(maxHeight: 100)
             HStack(spacing: 50) {
+                Spacer()
+
                 ZStack() {
                     Rectangle().frame(width: 150, height: 150).foregroundColor(Color(red: 0.85, green: 0, blue: 0)).cornerRadius(15)
                     Text("Rot").foregroundColor(.white)
@@ -32,8 +34,12 @@ struct ColorPickerView: View {
                         .onTapGesture {
                             colorPickHandler(card: .B_CHOOSE)
                         }
+                Spacer()
+
             }
             HStack(spacing: 50) {
+                Spacer()
+
                 ZStack() {
                     Rectangle().frame(width: 150, height: 150).foregroundColor(.green).cornerRadius(15)
                     Text("Grün").foregroundColor(.white)
@@ -48,12 +54,14 @@ struct ColorPickerView: View {
                         .onTapGesture {
                             colorPickHandler(card: .Y_CHOOSE)
                         }
+                Spacer()
+
 
             }
 
 
             Spacer()
-        }
+        }.background(Color(red: 0.35, green: 0.35, blue: 0.35))
     }
 
     func colorPickHandler(card: Cards) {
@@ -63,7 +71,7 @@ struct ColorPickerView: View {
         sessionHandler.gameHandler.hasPlayed = true
         showColorPicker = false
 
-        sessionHandler.gameHandler.cardDeck.remove(at: sessionHandler.gameHandler.cardDeck.firstIndex(where: { $0 == self.card })!)
+        sessionHandler.gameHandler.cardDeck.remove(at: sessionHandler.gameHandler.cardDeck.firstIndex(where: { $0 == self.card }) ?? self.card.id)
 
 
         sessionHandler.gameHandler.activeCard = card
