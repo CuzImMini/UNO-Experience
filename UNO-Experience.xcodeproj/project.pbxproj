@@ -40,7 +40,6 @@
 		EC24848029E03025003CE6F0 /* HostCardStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostCardStackView.swift; sourceTree = "<group>"; };
 		EC24848229E044EC003CE6F0 /* ClientGameEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientGameEndView.swift; sourceTree = "<group>"; };
 		EC24848429E044F6003CE6F0 /* HostGameEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostGameEndView.swift; sourceTree = "<group>"; };
-		EC35616629E09B8F00EDF858 /* UNO_Cards.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = UNO_Cards.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC7DE2165EB9724E33C43972 /* ClientGameEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientGameEngine.swift; sourceTree = "<group>"; };
 		EC7DE3D31E482D58C7534A5F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC7DE912E48E3BE3D12CFDDB /* GameEnums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEnums.swift; sourceTree = "<group>"; };
@@ -104,14 +103,6 @@
 			path = HostDeckView;
 			sourceTree = "<group>";
 		};
-		EC35616529E09B8F00EDF858 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				EC35616629E09B8F00EDF858 /* UNO_Cards.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		EC7DE75C891C88829E2B04F8 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,7 +128,6 @@
 				ECA880582979433E00DE4AC8 /* Shared */,
 				ECA880272979428A00DE4AC8 /* UNO-Experience */,
 				ECA88010297941E700DE4AC8 /* Products */,
-				EC35616529E09B8F00EDF858 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
